@@ -1,0 +1,9 @@
+#login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+/* .form-container {
+
+} */
