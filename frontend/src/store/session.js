@@ -23,7 +23,7 @@ export const loginUser = (credential, password) => async (dispatch) => {
   return user;
 };
 
-const initialState = {};
+const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
