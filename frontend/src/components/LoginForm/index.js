@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import { loginUser } from '../../store/session';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
+  const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const dispatch = useDispatch();
+  if (sessionUser) {
+    return <Redirect to="/" />;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -19,7 +25,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div class="form-container">
+    <div className="form-container">
       <form id="login-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, i) => (
