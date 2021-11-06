@@ -23,6 +23,14 @@ export const loginUser = (credential, password) => async (dispatch) => {
   return user;
 };
 
+export const logoutUser = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeSession());
+  return response;
+};
+
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch('/api/session');
   const user = await response.json();
