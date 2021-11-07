@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-pro": "^5.15.4",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -39,5 +40,5 @@
   "devDependencies": {
     "redux-logger": "^3.0.6"
   },
-   "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000"
 }

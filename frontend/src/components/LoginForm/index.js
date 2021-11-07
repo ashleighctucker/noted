@@ -27,32 +27,35 @@ const LoginForm = () => {
   return (
     <div className="form-container">
       <form id="login-form" onSubmit={handleSubmit}>
+        <h2> Welcome back!</h2>
         <ul>
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
         </ul>
-        <label htmlFor="credential">
-          Username or Email
-          <input
-            name="credential"
-            type="text"
-            placeholder="username or email address..."
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            name="password"
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Login</button>
+        <div className="input-container">
+          <div className="form-inputs">
+            <label htmlFor="credential">Username or Email</label>
+            <input
+              name="credential"
+              type="text"
+              placeholder="username or email address..."
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+            />
+          </div>
+          <div className="form-inputs">
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </div>
+        <button id="login-button" type="submit">Login</button>
       </form>
     </div>
   );
