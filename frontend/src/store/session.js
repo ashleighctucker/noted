@@ -34,7 +34,9 @@ export const logoutUser = () => async (dispatch) => {
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch('/api/session');
   const user = await response.json();
-  dispatch(setSession(user));
+  console.log('here', user);
+  if (!user.username) dispatch(removeSession());
+  else dispatch(setSession(user));
   return user;
 };
 
@@ -54,8 +56,7 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SESSION:
-      const user = { user: action.user };
-      return { ...state, ...user };
+      return { ...state, user: { ...action.user } };
     case REMOVE_SESSION:
       return { ...state, user: null };
     default:

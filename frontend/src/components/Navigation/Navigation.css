@@ -1,0 +1,37 @@
+.nav-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 200;
+  padding: 1%;
+}
+
+#navbar {
+  display: grid;
+  width: 100%;
+  grid-template-areas: ". a . . b .";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1%;
+}
+
+#right-nav {
+  grid-area: b;
+  list-style-type: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 2%;
+}
+
+#nav-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+}
+
+.profile-dropdown {
+  list-style-type: none;
+}
