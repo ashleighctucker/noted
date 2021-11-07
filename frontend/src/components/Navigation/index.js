@@ -9,9 +9,7 @@ const Navigation = ({ isLoaded }) => {
   let links;
   if (sessionUser && sessionUser.user) {
     links = (
-      <div>
         <ProfileButton id="profile-button" user={sessionUser} />
-      </div>
     );
   } else {
     links = (
@@ -29,14 +27,14 @@ const Navigation = ({ isLoaded }) => {
   return (
     <header className="nav-header">
       <nav id="navbar">
-        <ul id="right-nav">
-          <li id="nav-holder">
-            <NavLink className="nav-link" to="/">
-              Home
+        <div id="logo-nav">
+            <NavLink className="nav-link" id="logo" to="/">
+              noted.
             </NavLink>
-            {isLoaded && links}
-          </li>
-        </ul>
+        </div>
+        <div id="links">
+          {isLoaded && links}
+        </div>
       </nav>
     </header>
   );
