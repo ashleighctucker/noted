@@ -31,7 +31,7 @@
   font-size: .75;
   min-height: fit-content;
   height: 2.25em;
-  background-color: rgba(30, 109, 122, 0.897);
+  background-color: #4056A1;
   font-family: 'Montserrat', sans-serif;
   color: white;
   border: none;
@@ -43,4 +43,8 @@
   padding: 2%;
   text-align: center;
   font-size: .75rem;
+}
+
+.user-form-title {
+  color: #D77922;
 }

@@ -33,7 +33,7 @@ const SignupForm = () => {
   return (
     <div className="form-container">
       <form className="user-form" onSubmit={handleSubmit}>
-        <h2> Signup </h2>
+        <h2 className="user-form-title"> Signup </h2>
         <ul>
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
