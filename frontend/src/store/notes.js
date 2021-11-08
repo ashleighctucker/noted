@@ -28,11 +28,13 @@ const remove = (noteId) => ({
 export const getNotes = () => async (dispatch) => {
   const response = await csrfFetch('/api/notes');
   const notes = await response.json();
-  dispatch(load(notes));
-  return notes;
+  if (response.ok) {
+    dispatch(load(notes));
+    return notes;
+  }
 };
 
-const addNote = (title, content) => async (dispatch) => {
+export const addNote = (title, content) => async (dispatch) => {
   const response = await csrfFetch('/api/notes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -40,23 +42,28 @@ const addNote = (title, content) => async (dispatch) => {
   });
   const note = await response.json();
   dispatch(add(note));
+  return note;
 };
 
 export const editNote = (id, title, content) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${id}`);
+  const response = await csrfFetch(`/api/notes/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, content }),
+  });
   const note = await response.json();
   dispatch(update(note));
   return note;
 };
 
 export const deleteNote = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${id}`, { method: 'POST' });
+  const response = await csrfFetch(`/api/notes/${id}`, { method: 'DELETE' });
   const message = await response.json();
   dispatch(remove(id));
   return message;
 };
 
-const initialState = { notes: [] };
+const initialState = {};
 
 const noteReducer = (state = initialState, action) => {
   switch (action.type) {
