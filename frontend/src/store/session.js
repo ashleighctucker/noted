@@ -1,7 +1,7 @@
 const { csrfFetch } = require('./csrf');
 
-const SET_SESSION = 'session/set';
-const REMOVE_SESSION = 'session/remove';
+const SET_SESSION = 'session/SET_SESSION';
+const REMOVE_SESSION = 'session/REMOVE_SESSION';
 
 const setSession = (user) => ({
   type: SET_SESSION,
