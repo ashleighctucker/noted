@@ -6,7 +6,7 @@
 }
 
 .form-inputs {
-  font-size: .8rem;
+  font-size: .9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@
 
 .user-form-button {
   min-width: fit-content;
-  font-size: .75;
+  font-size: 1rem;
   min-height: fit-content;
   height: 2.25em;
   background-color: #4056A1;
@@ -41,16 +41,18 @@
 
 .user-form-errors {
   color: #f13c20;
+  font-size: 1rem;
 }
 
 .user-form-redirect {
   padding: 2%;
   text-align: center;
-  font-size: .75rem;
+  font-size: .85rem;
 }
 
 .user-form-title {
   color: #D77922;
+  font-size: 2rem;
 }
 
 .redirect-link {
