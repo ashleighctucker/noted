@@ -26,7 +26,7 @@ const LoginForm = () => {
 
   return (
     <div className="form-container">
-      <form id="login-form" onSubmit={handleSubmit}>
+      <form className="user-form" onSubmit={handleSubmit}>
         <h2> Welcome back!</h2>
         <ul>
           {errors.map((error, i) => (
@@ -55,8 +55,12 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <button id="login-button" type="submit">Login</button>
-        <span id="signup-redirect">Don't have an account? Signup <Link to="/signup">here</Link>.</span>
+        <button className="user-form-button" type="submit">
+          Login
+        </button>
+        <span className="user-form-redirect">
+          Don't have an account? Signup <Link to="/signup">here</Link>.
+        </span>
       </form>
     </div>
   );
