@@ -27,7 +27,7 @@ router.get(
     const notes = await Note.findAll({
       where: { userId: +user.dataValues.id },
     });
-    return res.json({ notes });
+    return res.json(notes);
   })
 );
 
@@ -44,7 +44,7 @@ router.get(
     if (+note.userId !== +user.dataValues.id) {
       return next(fetchNotesError('You do not have access to this note'));
     }
-    return res.json({ note });
+    return res.json(note);
   })
 );
 
@@ -73,7 +73,7 @@ router.post(
       title,
       content,
     });
-    return res.json({ newNote });
+    return res.json(newNote);
   })
 );
 
@@ -94,7 +94,7 @@ router.put(
       return next(fetchNotesError('You are not authorized to edit this note'));
     }
     await noteToUpdate.update(note);
-    return res.json({ note: noteToUpdate });
+    return res.json(noteToUpdate);
   })
 );
 
