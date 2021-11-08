@@ -25,7 +25,12 @@ const SignupForm = () => {
     } else {
       return dispatch(signup(username, email, password)).catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
+        }
       });
     }
   };
@@ -34,7 +39,7 @@ const SignupForm = () => {
     <div className="form-container">
       <form className="user-form" onSubmit={handleSubmit}>
         <h2 className="user-form-title"> Signup </h2>
-        <ul>
+        <ul className="user-form-errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
@@ -81,7 +86,11 @@ const SignupForm = () => {
           Signup
         </button>
         <span className="user-form-redirect">
-          Already have an account? Login <Link to="/login">here</Link>.
+          Already have an account? Login{' '}
+          <Link className="redirect-link" to="/login">
+            here
+          </Link>
+          .
         </span>
       </form>
     </div>
