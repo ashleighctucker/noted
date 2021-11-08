@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { signup } from '../../store/session';
+import { signup, loginUser } from '../../store/session';
 import './SignupForm.css';
 
 const SignupForm = () => {
@@ -23,15 +23,18 @@ const SignupForm = () => {
     if (confirmPassword !== password) {
       return setErrors(['Passwords do not match.']);
     } else {
-      return dispatch(signup(username, email, password)).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          const filteredErrors = data.errors.filter(
-            (error) => error !== 'Invalid value'
-          );
-          setErrors(filteredErrors);
+      const user = dispatch(signup(username, email, password)).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            const filteredErrors = data.errors.filter(
+              (error) => error !== 'Invalid value'
+            );
+            setErrors(filteredErrors);
+          }
         }
-      });
+      );
+      return dispatch(loginUser(username, password));
     }
   };
 
