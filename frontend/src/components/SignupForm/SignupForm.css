@@ -39,6 +39,10 @@
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
 }
 
+.user-form-errors {
+  color: #f13c20;
+}
+
 .user-form-redirect {
   padding: 2%;
   text-align: center;
@@ -47,4 +51,9 @@
 
 .user-form-title {
   color: #D77922;
+}
+
+.redirect-link {
+  color: #D77922;
+  text-decoration: none;
 }
