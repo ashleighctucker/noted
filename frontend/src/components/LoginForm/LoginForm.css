@@ -1,17 +1,1 @@
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5%;
-}
-
-.form-inputs {
-  font-size: .8rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3%;
-  width: fit-content;
-}
-
+/* classes used from SignUp Form component */
