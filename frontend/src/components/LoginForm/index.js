@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { loginUser } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
@@ -26,8 +26,8 @@ const LoginForm = () => {
 
   return (
     <div className="form-container">
-      <form id="login-form" onSubmit={handleSubmit}>
-        <h2> Welcome back!</h2>
+      <form className="user-form" onSubmit={handleSubmit}>
+        <h2 className="user-form-title"> Welcome back!</h2>
         <ul>
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
@@ -55,7 +55,12 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <button id="login-button" type="submit">Login</button>
+        <button className="user-form-button" type="submit">
+          Login
+        </button>
+        <span className="user-form-redirect">
+          Don't have an account? Signup <Link to="/signup">here</Link>.
+        </span>
       </form>
     </div>
   );

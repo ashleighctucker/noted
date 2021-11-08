@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signup } from '../../store/session';
 import './SignupForm.css';
 
@@ -32,8 +32,8 @@ const SignupForm = () => {
 
   return (
     <div className="form-container">
-      <form id="signup-form" onSubmit={handleSubmit}>
-        <h2> Signup </h2>
+      <form className="user-form" onSubmit={handleSubmit}>
+        <h2 className="user-form-title"> Signup </h2>
         <ul>
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
@@ -77,9 +77,12 @@ const SignupForm = () => {
             />
           </div>
         </div>
-        <button id="signup-button" type="submit">
+        <button className="user-form-button" type="submit">
           Signup
         </button>
+        <span className="user-form-redirect">
+          Already have an account? Login <Link to="/login">here</Link>.
+        </span>
       </form>
     </div>
   );
