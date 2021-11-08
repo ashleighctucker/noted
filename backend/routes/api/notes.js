@@ -7,25 +7,43 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+const fetchNotesError = (message) => {
+  const err = new Error(message);
+  err.status = 401;
+  err.title = 'Note fetch failed';
+  err.errors = [message];
+  return err;
+};
+
 router.get(
   '/',
   restoreUser,
   asyncHandler(async (req, res, next) => {
     const { user } = req;
-    console.log(user);
-    if (user) {
-      const notes = await Note.findAll({
-        where: { userId: +user.dataValues.id },
-      });
-      console.log(notes);
-      return res.json({ notes });
-    } else {
-      const err = new Error('Must be logged in to get notes');
-      err.status = 401;
-      err.title = 'Note fetch failed';
-      err.errors = ['Must be logged in to get notes'];
-      return next(err);
+    if (!user) {
+      return next(fetchNotesError('Must be logged in to get note(s)'));
     }
+    const notes = await Note.findAll({
+      where: { userId: +user.dataValues.id },
+    });
+    return res.json({ notes });
+  })
+);
+
+router.get(
+  '/:id(\\d+)',
+  restoreUser,
+  asyncHandler(async (req, res, next) => {
+    const { user } = req;
+    const noteId = parseInt(req.params.id, 10);
+    if (!user) {
+      return next(fetchNotesError('Must be logged in to get note(s)'));
+    }
+    const note = await Note.findByPk(noteId);
+    if (+note.userId !== +user.dataValues.id) {
+      return next(fetchNotesError('You do not have access to this note'));
+    }
+    return res.json({ note });
   })
 );
 
