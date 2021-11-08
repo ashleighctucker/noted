@@ -77,4 +77,25 @@ router.post(
   })
 );
 
+router.put(
+  '/:id(\\d+)',
+  restoreUser,
+  validateNote,
+  asyncHandler(async (req, res, next) => {
+    const { title, content } = req.body;
+    const { user } = req;
+    if (!user) {
+      return next(fetchNotesError('You must be logged in to edit a note'));
+    }
+    const noteId = parseInt(req.params.id, 10);
+    const noteToUpdate = await Note.findByPk(noteId);
+    const note = { title, content, userId: user.dataValues.id };
+    if (+noteToUpdate.userId !== +user.dataValues.id) {
+      return next(fetchNotesError('You are not authorized to edit this note'));
+    }
+    await noteToUpdate.update(note);
+    return res.json({ note: noteToUpdate });
+  })
+);
+
 module.exports = router;
