@@ -50,10 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  User.associate = function (models) {
-    // associations can be defined here
-  };
-
   User.prototype.toSafeObject = function () {
     const { id, username, email } = this;
     return { id, username, email };
@@ -90,6 +86,10 @@ module.exports = (sequelize, DataTypes) => {
       hashedPassword,
     });
     return await User.scope('currentUser').findByPk(user.id);
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Note, { foreignKey: 'userId' });
   };
 
   return User;
