@@ -98,4 +98,18 @@ router.put(
   })
 );
 
+router.delete('/:id(\\d+)', restoreUser, async (req, res, next) => {
+  const { user } = req;
+  if (!user) {
+    return next(fetchNotesError('You must be logged in to delete a note'));
+  }
+  const noteId = parseInt(req.params.id, 10);
+  const noteToDelete = await Note.findByPk(noteId);
+  if (+noteToDelete.userId !== +user.dataValues.id) {
+    return next(fetchNotesError('You are not authorized to delete this note'));
+  }
+  await noteToDelete.destroy();
+  return res.json({ message: `Note ${noteId} sucessfully deleted` });
+});
+
 module.exports = router;
