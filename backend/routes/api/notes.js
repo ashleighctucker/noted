@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 
 const { Note } = require('../../db/models');
 const { restoreUser } = require('../../utils/auth');
@@ -44,6 +45,32 @@ router.get(
       return next(fetchNotesError('You do not have access to this note'));
     }
     return res.json({ note });
+  })
+);
+
+const validateNote = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a title for your note')
+    .isLength({ max: 256 })
+    .withMessage('Title cannot be more than 256 characters long'),
+  handleValidationErrors,
+];
+
+//front end will need to make sure they are logged in
+router.post(
+  '/',
+  restoreUser,
+  validateNote,
+  asyncHandler(async (req, res) => {
+    const { title, content, userId } = req.body;
+    const newNote = await Note.create({
+      userId,
+      title,
+      content,
+    });
+    return res.json({ newNote });
   })
 );
 
