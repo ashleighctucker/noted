@@ -58,15 +58,18 @@ const validateNote = [
   handleValidationErrors,
 ];
 
-//front end will need to make sure they are logged in
 router.post(
   '/',
   restoreUser,
   validateNote,
-  asyncHandler(async (req, res) => {
-    const { title, content, userId } = req.body;
+  asyncHandler(async (req, res, next) => {
+    const { title, content } = req.body;
+    const { user } = req;
+    if (!user) {
+      return next(fetchNotesError('You must be logged in to create a note'));
+    }
     const newNote = await Note.create({
-      userId,
+      userId: user.dataValues.id,
       title,
       content,
     });
