@@ -19,7 +19,7 @@ const fetchNotebookError = (message) => {
 router.get(
   '/',
   restoreUser,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const { user } = req;
     if (!user) {
       return next(fetchNotebookError('Must be logged in to get notebook(s)'));
@@ -28,6 +28,25 @@ router.get(
       where: { userId: +user.dataValues.id },
     });
     return res.json(notebooks);
+  })
+);
+
+router.get(
+  '/:id(\\d+)',
+  restoreUser,
+  asyncHandler(async (req, res, next) => {
+    const { user } = req;
+    const notebookId = parseInt(req.params.id, 10);
+    if (!user) {
+      return next(fetchNotebookError('Must be logged in to get notebook(s)'));
+    }
+    const notebook = await Notebook.findByPk(notebookId);
+    if (notebook.id !== +user.dataValues.id) {
+      return next(
+        fetchNotebookError('You do not have access to this notebook')
+      );
+    }
+    return res.json(notebook);
   })
 );
 
