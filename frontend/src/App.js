@@ -23,8 +23,8 @@ function App() {
   return (
     <div>
       <Navigation isLoaded={isLoaded} />
-      <NavLink to="/notes/new"> Notes </NavLink>
-      <NavLink to="/notes/2/edit"> Edit Test </NavLink>
+      {/* <NavLink to="/notes/new"> Notes </NavLink>
+      <NavLink to="/notes/2/edit"> Edit Test </NavLink> */}
       <Switch>
         <Route path="/login">
           <LoginForm />
