@@ -17,24 +17,22 @@ const SignupForm = () => {
     return <Redirect to="/" />;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     if (confirmPassword !== password) {
       return setErrors(['Passwords do not match.']);
     } else {
-      const user = dispatch(signup(username, email, password)).catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) {
-            const filteredErrors = data.errors.filter(
-              (error) => error !== 'Invalid value'
-            );
-            setErrors(filteredErrors);
-          }
+      await dispatch(signup(username, email, password)).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
         }
-      );
-      return dispatch(loginUser(username, password));
+      });
+      return await dispatch(loginUser(username, password));
     }
   };
 

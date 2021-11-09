@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { addNote } from '../../store/notes';
-import './NoteForm.css';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { deleteNote, editNote } from '../../store/notes';
+import './EditNoteForm.css';
 
-const NoteForm = () => {
+const EditNoteForm = () => {
+  const { noteId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
+  const note = useSelector((state) => state.notes[noteId]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(note.title);
+  const [content, setContent] = useState(note.content);
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) {
     return <Redirect to="/login" />;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErrors([]);
-    const note = await dispatch(addNote(title, content)).catch(async (res) => {
+  const handleDelete = async () => {
+    const res = await dispatch(deleteNote(noteId)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) {
         const filteredErrors = data.errors.filter(
@@ -28,6 +28,25 @@ const NoteForm = () => {
         setErrors(filteredErrors);
       }
     });
+    if (res) {
+      history.push('/');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const note = await dispatch(editNote(noteId, title, content)).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
+        }
+      }
+    );
     if (note) {
       history.push('/');
     }
@@ -69,6 +88,9 @@ const NoteForm = () => {
             <button className="note-button" type="submit">
               <i className="far fa-save"></i> Save
             </button>
+            <button className="delete-note-button" onClick={handleDelete}>
+              <i className="far fa-trash-alt"></i> Delete
+            </button>
           </div>
         </div>
       </form>
@@ -76,4 +98,4 @@ const NoteForm = () => {
   );
 };
 
-export default NoteForm;
+export default EditNoteForm;
