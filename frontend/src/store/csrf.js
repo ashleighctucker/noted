@@ -6,7 +6,6 @@ export async function csrfFetch(url, options = {}) {
 
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] = 'application/json';
-    // options.headers['Content-Type'] || 'application/json';
     options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
   }
 
@@ -14,7 +13,6 @@ export async function csrfFetch(url, options = {}) {
   const res = await window.fetch(url, options);
 
   if (res.status >= 400) throw res;
-  console.log('nope');
   return res;
 }
 
