@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 import { addNote } from '../../store/notes';
+import './NoteForm.css';
 
 const NoteForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -15,10 +16,10 @@ const NoteForm = () => {
     return <Redirect to="/login" />;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const note = dispatch(addNote(title, content)).catch(async (res) => {
+    const note = await dispatch(addNote(title, content)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) {
         const filteredErrors = data.errors.filter(
@@ -27,36 +28,49 @@ const NoteForm = () => {
         setErrors(filteredErrors);
       }
     });
-    history.push('/');
+    if (note) {
+      history.push('/');
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Add a new note</h2>
-        <ul className="user-form-errors">
-          {errors.map((error, i) => (
-            <li key={i}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <label htmlFor="title">Title</label>
+    <div id="note-form-container">
+      <form id="note-form" onSubmit={handleSubmit}>
+        <div className="note-form-title-container">
+          <label htmlFor="title" className="note-title">
+            Title
+          </label>
           <input
+            className="note-title-input"
             name="title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div>
+        <div className="note-form-content-container">
           <label htmlFor="content"></label>
           <textarea
+            className="note-content-input"
             name="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <button type="submit">Save Note</button>
+        <div className="note-button-container">
+          <div className="error-div">
+            <p className="user-form-errors">
+              {errors.map((error, i) => (
+                <span key={i}>{error}</span>
+              ))}
+            </p>
+          </div>
+          <div className="button-div">
+            <button className="note-button" type="submit">
+              Save Note
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

@@ -31,7 +31,7 @@ const LoginForm = () => {
   return (
     <div className="form-container">
       <form className="user-form" onSubmit={handleSubmit}>
-        <h2 className="user-form-title"> Welcome back!</h2>
+        <h2 className="form-title"> Welcome back!</h2>
         <ul className="user-form-errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
@@ -63,7 +63,11 @@ const LoginForm = () => {
           Login
         </button>
         <span className="user-form-redirect">
-          Don't have an account? Signup <Link className="redirect-link" to="/signup">here</Link>.
+          Don't have an account? Signup{' '}
+          <Link className="redirect-link" to="/signup">
+            here
+          </Link>
+          .
         </span>
       </form>
     </div>
