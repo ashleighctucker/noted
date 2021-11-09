@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Navigation from './components/Navigation';
+import NoteForm from './components/NoteForm';
 
 import { restoreUser } from './store/session';
 
@@ -21,16 +22,18 @@ function App() {
   return (
     <div>
       <Navigation isLoaded={isLoaded} />
-
-        <Switch>
-          <Route path="/login">
-            <LoginForm />
-          </Route>
-          <Route path="/signup">
-            <SignupForm />
-          </Route>
-        </Switch>
-      
+      <NavLink to="/notes/new"> Notes </NavLink>
+      <Switch>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
+        <Route path="/signup">
+          <SignupForm />
+        </Route>
+        <Route path="/notes/new">
+          <NoteForm />
+        </Route>
+      </Switch>
     </div>
   );
 }
