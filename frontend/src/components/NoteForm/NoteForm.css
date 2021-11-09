@@ -61,12 +61,14 @@
 .button-div {
   grid-area: button;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center
 }
 
 .note-button {
   min-width: fit-content;
+  white-space: nowrap;
   width: 2em;
   font-size: 1rem;
   min-height: fit-content;

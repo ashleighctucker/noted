@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
-import { editNote } from '../../store/notes';
+import { deleteNote, editNote } from '../../store/notes';
+import './EditNoteForm.css';
 
 const EditNoteForm = () => {
   const { noteId } = useParams();
@@ -16,6 +17,21 @@ const EditNoteForm = () => {
   if (!sessionUser) {
     return <Redirect to="/login" />;
   }
+
+  const handleDelete = async () => {
+    const res = await dispatch(deleteNote(noteId)).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) {
+        const filteredErrors = data.errors.filter(
+          (error) => error !== 'Invalid value'
+        );
+        setErrors(filteredErrors);
+      }
+    });
+    if (res) {
+      history.push('/');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,7 +86,10 @@ const EditNoteForm = () => {
           </div>
           <div className="button-div">
             <button className="note-button" type="submit">
-              Save Note
+              <i className="far fa-save"></i> Save
+            </button>
+            <button className="delete-note-button" onClick={handleDelete}>
+              <i className="far fa-trash-alt"></i> Delete
             </button>
           </div>
         </div>

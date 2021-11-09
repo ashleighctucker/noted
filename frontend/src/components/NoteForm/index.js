@@ -67,7 +67,7 @@ const NoteForm = () => {
           </div>
           <div className="button-div">
             <button className="note-button" type="submit">
-              Save Note
+              <i class="far fa-save"></i> Save
             </button>
           </div>
         </div>
