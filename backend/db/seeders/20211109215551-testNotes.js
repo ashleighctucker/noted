@@ -7,16 +7,19 @@ module.exports = {
       [
         {
           userId: 1,
+          notebookId: 1,
           title: 'Test note one',
           content: 'Test note one content',
         },
         {
           userId: 1,
+          notebookId: 2,
           title: 'Test note two',
           content: 'Test note two content',
         },
         {
           userId: 1,
+          notebookId: 1,
           title: 'Test note three',
           content: 'Test note three content',
         },

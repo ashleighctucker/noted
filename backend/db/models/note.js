@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       notebookId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
       title: {
         type: DataTypes.STRING,
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Note.associate = function (models) {
     Note.belongsTo(models.User, { foreignKey: 'userId' });
+    Note.belongsTo(models.Notebook, { foreignKey: 'notebookId' });
   };
   return Note;
 };
