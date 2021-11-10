@@ -3,7 +3,7 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import LoginForm from './components/LoginForm';
+import LoginFormModal from './components/LoginFormModal';
 import SignupForm from './components/SignupForm';
 import Navigation from './components/Navigation';
 import NoteForm from './components/NoteForm';
@@ -30,7 +30,7 @@ function App() {
       <NavLink to="/home">Home</NavLink>
       <Switch>
         <Route path="/login">
-          <LoginForm />
+          <LoginFormModal />
         </Route>
         <Route path="/signup">
           <SignupForm />
