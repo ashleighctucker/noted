@@ -16,10 +16,7 @@ const NotebooksBar = () => {
     const tiles = [];
     for (const notebook in notebooks) {
       const inner = (
-        <NotebookTile
-          key={notebook}
-          notebook={notebooks[notebook]}
-        />
+        <NotebookTile key={notebook} notebook={notebooks[notebook]} />
       );
       tiles.push(inner);
     }

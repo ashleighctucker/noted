@@ -9,7 +9,7 @@ import Navigation from './components/Navigation';
 import NoteForm from './components/NoteForm';
 import EditNoteForm from './components/EditNoteForm';
 import NotebooksBar from './components/NotebooksBar';
-import NotesList from './components/NotebooksBar/NotesList';
+import NotesList from './components/NotesList';
 
 import { restoreUser } from './store/session';
 
@@ -38,14 +38,18 @@ function App() {
         <Route path="/notes/new">
           <NoteForm />
         </Route>
-        <Route path="/notes/:noteId/edit">
-          <EditNoteForm />
+        <Route path="/notebooks/:notebookId/notes/:noteId/edit">
+          <div className="note-view-divider">
+            <NotebooksBar />
+            <NotesList />
+            <EditNoteForm />
+          </div>
         </Route>
         <Route path="/home">
           <NotebooksBar />
         </Route>
         <Route path="/notebooks/:notebookId/view">
-          <div id="note-view-divider">
+          <div className="note-view-divider">
             <NotebooksBar />
             <NotesList />
           </div>

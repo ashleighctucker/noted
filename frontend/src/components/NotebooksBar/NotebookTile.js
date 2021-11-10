@@ -7,11 +7,7 @@ const NotebookTile = ({ notebook }) => {
   };
 
   return (
-    <div
-      className="notebook-tile"
-      key={notebook.id}
-      onClick={() => handleClick()}
-    >
+    <div className="notebook-tile" key={notebook.id} onClick={handleClick}>
       <img className="tile-image" src={notebook.photoUrl} alt="test" />
       <p>{notebook.title}</p>
     </div>

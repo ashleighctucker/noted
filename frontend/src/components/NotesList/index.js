@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getNotes } from '../../store/notes';
+import NoteTile from './NoteTile';
 
 const NotesList = () => {
   const { notebookId } = useParams();
@@ -21,9 +22,9 @@ const NotesList = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div id="note-tiles-container">
       {notes?.map((note) => (
-        <span key={note.id}>{note.title}</span>
+        <NoteTile key={note.id} note={note} />
       ))}
     </div>
   );
