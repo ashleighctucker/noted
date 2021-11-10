@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotebooks } from '../../store/notebooks';
+import NotebookTile from './NotebookTile';
 import './NotebooksBar.css';
 
 const NotebooksBar = () => {
@@ -11,22 +12,14 @@ const NotebooksBar = () => {
     dispatch(getNotebooks());
   }, [dispatch]);
 
-  const notebooksArray = [];
-  console.log(notebooks, notebooksArray);
-
   const createTile = (notebooks) => {
     const tiles = [];
-    console.log(notebooks);
     for (const notebook in notebooks) {
       const inner = (
-        <div className="notebook-tile">
-          <img
-            className="tile-image"
-            src={notebooks[notebook].photoUrl}
-            alt="test"
-          />
-          <p>{notebooks[notebook].title}</p>
-        </div>
+        <NotebookTile
+          key={notebook}
+          notebook={notebooks[notebook]}
+        />
       );
       tiles.push(inner);
     }

@@ -1,12 +1,12 @@
 .notebook-tile {
-  width: 175px;
+  width: 200px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #EFE2BA;
-  padding: 1%;
-  border-radius: 15px;
+  padding: 3%;
+  border-radius: 25px;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   text-align: center;
@@ -14,12 +14,15 @@
 }
 
 .tile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
 }
 
 #notebooks-bar-container {
+  grid-area: bar;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -9,6 +9,7 @@ import Navigation from './components/Navigation';
 import NoteForm from './components/NoteForm';
 import EditNoteForm from './components/EditNoteForm';
 import NotebooksBar from './components/NotebooksBar';
+import NotesList from './components/NotebooksBar/NotesList';
 
 import { restoreUser } from './store/session';
 
@@ -42,6 +43,12 @@ function App() {
         </Route>
         <Route path="/home">
           <NotebooksBar />
+        </Route>
+        <Route path="/notebooks/:notebookId/view">
+          <div id="note-view-divider">
+            <NotebooksBar />
+            <NotesList />
+          </div>
         </Route>
       </Switch>
     </div>
