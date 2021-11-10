@@ -9,7 +9,6 @@ const EditNotebookForm = ({ close, notebook }) => {
   const [title, setTitle] = useState(notebook.title);
   const [photoUrl, setPhotoUrl] = useState(notebook.photoUrl);
   const [errors, setErrors] = useState([]);
-  console.log('open');
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useSelector } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logoutUser } from '../../store/session';
@@ -45,7 +45,7 @@ const ProfileButton = ({ user }) => {
       />
       {showMenu && (
         <div className="profile-dropdown">
-          <div id="hello">Hello, {user.username}!</div>
+          <div id="hello">Hello, {username}!</div>
           <div>
             <button id="logout-button" onClick={logout}>
               Logout

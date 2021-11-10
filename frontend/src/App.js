@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  console.log(isLoaded);
 
   return (
     <div>
