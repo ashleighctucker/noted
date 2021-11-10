@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotebooks } from '../../store/notebooks';
 import NotebookTile from './NotebookTile';
@@ -26,6 +27,14 @@ const NotebooksBar = () => {
   return (
     <div id="notebooks-bar-container">
       {notebooks ? createTile(notebooks) : null}
+      <div className="add-note-div">
+        <p>Add Notebook</p>
+        <NavLink className="nav-link" to={`/notebooks/new`}>
+          <button className="add-note-button">
+            <i className="far fa-plus"></i>
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 };
