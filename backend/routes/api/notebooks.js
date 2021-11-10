@@ -54,7 +54,7 @@ const validateNotebook = [
   check('title')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a title for your note')
+    .withMessage('Please provide a title for your notebook')
     .isLength({ max: 256 })
     .withMessage('Title cannot be more than 256 characters long'),
   check('photoUrl')

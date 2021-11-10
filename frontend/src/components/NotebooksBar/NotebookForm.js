@@ -1,26 +1,19 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
-import { addNote } from '../../store/notes';
-import './NoteForm.css';
+import { useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { addNotebook } from '../../store/notebooks';
 
-const NoteForm = () => {
-  const sessionUser = useSelector((state) => state.session.user);
-  const { notebookId } = useParams();
+const NotebookForm = ({ close }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('');
   const [errors, setErrors] = useState([]);
-
-  if (!sessionUser) {
-    return <Redirect to="/login" />;
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const note = await dispatch(addNote(notebookId, title, content)).catch(
+    const notebook = await dispatch(addNotebook(title, photoUrl)).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) {
@@ -31,33 +24,34 @@ const NoteForm = () => {
         }
       }
     );
-    if (note) {
-      history.push('/');
+    if (notebook) {
+      close();
+      history.push(`/notebooks/${notebook.id}/notes/new`);
     }
   };
 
   return (
-    <div className="note-form-container">
+    <div id="notebook-modal">
       <form id="note-form" onSubmit={handleSubmit}>
         <div className="note-form-title-container">
-          <label htmlFor="title" className="note-title">
+          <label className="note-title" htmlFor="title">
             Title
           </label>
           <input
             className="note-title-input"
             name="title"
-            type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="note-form-content-container">
-          <label htmlFor="content"></label>
-          <textarea
-            className="note-content-input"
-            name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+        <div className="photo-input-container">
+          <label htmlFor="photoUrl">Notbook Cover Photo</label>
+          <input
+            className="note-title-input"
+            name="photoUrl"
+            value={photoUrl}
+            placeholder="Insert a photo URL (optional)"
+            onChange={(e) => setPhotoUrl(e.target.value)}
           />
         </div>
         <div className="note-button-container">
@@ -79,4 +73,4 @@ const NoteForm = () => {
   );
 };
 
-export default NoteForm;
+export default NotebookForm;

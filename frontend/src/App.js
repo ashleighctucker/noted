@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  console.log(isLoaded);
 
   return (
     <div>
@@ -50,12 +49,8 @@ function App() {
           </div>
         </Route>
         <Route path="/home">
-          <NotebooksBar />
-        </Route>
-        <Route path="/notebooks/:notebookId/view">
           <div className="note-view-divider">
             <NotebooksBar />
-            <NotesList />
           </div>
         </Route>
       </Switch>

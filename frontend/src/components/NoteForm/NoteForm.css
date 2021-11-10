@@ -1,8 +1,7 @@
-#note-form-container {
+.note-form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 7px 1px rgb(199, 199, 199);
+  /* box-shadow: 0 0 7px 1px rgb(199, 199, 199); */
   border-radius: 25px;
   padding: 3%;
 }

@@ -13,7 +13,7 @@ const Navigation = ({ isLoaded }) => {
   };
 
   let links;
-  if (sessionUser && sessionUser.user) {
+  if (sessionUser) {
     links = <ProfileButton id="profile-button" user={sessionUser} />;
   } else {
     links = (
