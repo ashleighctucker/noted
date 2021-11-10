@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { deleteNote, editNote } from '../../store/notes';
@@ -13,6 +13,11 @@ const EditNoteForm = () => {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    setTitle(note.title);
+    setContent(note.content);
+  }, [note.title, note.content]);
 
   if (!sessionUser) {
     return <Redirect to="/login" />;
