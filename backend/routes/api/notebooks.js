@@ -50,4 +50,38 @@ router.get(
   })
 );
 
+const validateNotebook = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a title for your note')
+    .isLength({ max: 256 })
+    .withMessage('Title cannot be more than 256 characters long'),
+  check('photoUrl')
+    .isLength({ max: 256 })
+    .withMessage('URL cannot be more than 256 characters long'),
+  handleValidationErrors,
+];
+
+router.post(
+  '/',
+  restoreUser,
+  validateNotebook,
+  asyncHandler(async (req, res, next) => {
+    const { title, photoUrl } = req.body;
+    const { user } = req;
+    if (!user) {
+      return next(
+        fetchNotebookError('You must be logged in to create a notebook')
+      );
+    }
+    const newNotebook = await Notebook.create({
+      userId: user.dataValues.id,
+      title,
+      photoUrl,
+    });
+    return res.json(newNotebook);
+  })
+);
+
 module.exports = router;
