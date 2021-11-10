@@ -38,7 +38,7 @@ export const addNote = (notebookId, title, content) => async (dispatch) => {
   const response = await csrfFetch('/api/notes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, content }),
+    body: JSON.stringify({ notebookId, title, content }),
   });
   const note = await response.json();
   dispatch(add(note));

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { addNote } from '../../store/notes';
 import './NoteForm.css';
 
 const NoteForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const { notebookId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -19,15 +20,17 @@ const NoteForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const note = await dispatch(addNote(title, content)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) {
-        const filteredErrors = data.errors.filter(
-          (error) => error !== 'Invalid value'
-        );
-        setErrors(filteredErrors);
+    const note = await dispatch(addNote(notebookId, title, content)).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
+        }
       }
-    });
+    );
     if (note) {
       history.push('/');
     }

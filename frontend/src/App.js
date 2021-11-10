@@ -35,7 +35,7 @@ function App() {
         <Route path="/signup">
           <SignupForm />
         </Route>
-        <Route path="/notes/new">
+        <Route path="/notebooks/:notebookId/notes/new">
           <NoteForm />
         </Route>
         <Route path="/notebooks/:notebookId/notes/:noteId/edit">

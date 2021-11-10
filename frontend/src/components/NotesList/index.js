@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { getNotes } from '../../store/notes';
 import NoteTile from './NoteTile';
@@ -29,9 +29,11 @@ const NotesList = () => {
       ))}
       <div className="add-note-div">
         <p>Add Note</p>
-        <button className="add-note-button">
-          <i className="far fa-plus"></i>
-        </button>
+        <NavLink className="nav-link" to={`/notebooks/${notebookId}/notes/new`}>
+          <button className="add-note-button">
+            <i className="far fa-plus"></i>
+          </button>
+        </NavLink>
       </div>
     </div>
   );
