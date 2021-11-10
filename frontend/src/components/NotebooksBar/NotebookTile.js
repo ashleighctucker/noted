@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 const NotebookTile = ({ notebook }) => {
   const history = useHistory();
   const handleClick = () => {
-    history.push(`/notebooks/${notebook.id}/view`);
+    history.push(`/notebooks/${notebook.id}/notes/new`);
   };
 
   return (

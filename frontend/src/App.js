@@ -50,12 +50,8 @@ function App() {
           </div>
         </Route>
         <Route path="/home">
-          <NotebooksBar />
-        </Route>
-        <Route path="/notebooks/:notebookId/view">
           <div className="note-view-divider">
             <NotebooksBar />
-            <NotesList />
           </div>
         </Route>
       </Switch>
