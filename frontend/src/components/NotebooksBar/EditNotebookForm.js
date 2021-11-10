@@ -26,7 +26,6 @@ const EditNotebookForm = ({ close, notebook }) => {
       }
     });
     if (editedNotebook) {
-      close();
       history.push(`/notebooks/${notebook.id}/notes/new`);
     }
   };

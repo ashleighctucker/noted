@@ -34,10 +34,10 @@ export const logoutUser = () => async (dispatch) => {
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch('/api/session');
   const user = await response.json();
-  console.log('here', user);
-  if (!user.username) dispatch(removeSession());
+  console.log('here', user.user.username);
+  if (!user.user.username) dispatch(removeSession());
   else dispatch(setSession(user));
-  return user;
+  return user.user;
 };
 
 export const signup = (username, email, password) => async (dispatch) => {
