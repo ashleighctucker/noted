@@ -5,7 +5,7 @@ import { deleteNote, editNote } from '../../store/notes';
 import './EditNoteForm.css';
 
 const EditNoteForm = () => {
-  const { noteId } = useParams();
+  const { noteId, notebookId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const note = useSelector((state) => state.notes[noteId]);
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const EditNoteForm = () => {
       <form id="note-form" onSubmit={handleSubmit}>
         <div className="note-form-title-container">
           <label htmlFor="title" className="note-title">
-            Title
+            {title}
           </label>
           <input
             className="note-title-input"

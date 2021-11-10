@@ -34,7 +34,7 @@ export const getNotes = () => async (dispatch) => {
   }
 };
 
-export const addNote = (title, content) => async (dispatch) => {
+export const addNote = (notebookId, title, content) => async (dispatch) => {
   const response = await csrfFetch('/api/notes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -45,8 +45,8 @@ export const addNote = (title, content) => async (dispatch) => {
   return note;
 };
 
-export const editNote = (id, title, content) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${id}`, {
+export const editNote = (noteId, title, content) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notes/${noteId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title, content }),

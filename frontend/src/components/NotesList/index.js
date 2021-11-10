@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { getNotes } from '../../store/notes';
 import NoteTile from './NoteTile';
+import './NotesList.css';
 
 const NotesList = () => {
   const { notebookId } = useParams();
@@ -26,6 +27,12 @@ const NotesList = () => {
       {notes?.map((note) => (
         <NoteTile key={note.id} note={note} />
       ))}
+      <div className="add-note-div">
+        <p>Add Note</p>
+        <button className="add-note-button">
+          <i className="far fa-plus"></i>
+        </button>
+      </div>
     </div>
   );
 };
