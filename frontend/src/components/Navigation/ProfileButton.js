@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSelector } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { logoutUser } from '../../store/session';
 
 const ProfileButton = ({ user }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  const [username, setUsername] = useState(user.username);
 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
+
+  useEffect(() => {
+    setUsername(user.username);
+  }, [user.username]);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -26,6 +33,7 @@ const ProfileButton = ({ user }) => {
   const logout = (e) => {
     e.preventDefault();
     dispatch(logoutUser());
+    history.push('/');
   };
 
   return (
@@ -37,7 +45,7 @@ const ProfileButton = ({ user }) => {
       />
       {showMenu && (
         <div className="profile-dropdown">
-          <div id="hello">Hello, {user.user.username}!</div>
+          <div id="hello">Hello, {user.username}!</div>
           <div>
             <button id="logout-button" onClick={logout}>
               Logout

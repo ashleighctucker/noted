@@ -8,10 +8,11 @@ import './NotebooksBar.css';
 const NotebooksBar = () => {
   const dispatch = useDispatch();
   const notebooks = useSelector((state) => state.notebooks);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getNotebooks());
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   const createTile = (notebooks) => {
     const tiles = [];
