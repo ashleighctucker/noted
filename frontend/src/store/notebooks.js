@@ -74,7 +74,6 @@ const notebookReducer = (state = initialState, action) => {
       action.list.forEach((notebook) => {
         normalNotebooks[notebook.id] = notebook;
       });
-      console.log(normalNotebooks);
       return { ...state, ...normalNotebooks };
     }
     case ADD: {

@@ -8,6 +8,7 @@ import SignupForm from './components/SignupForm';
 import Navigation from './components/Navigation';
 import NoteForm from './components/NoteForm';
 import EditNoteForm from './components/EditNoteForm';
+import NotebooksBar from './components/NotebooksBar';
 
 import { restoreUser } from './store/session';
 
@@ -25,6 +26,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {/* <NavLink to="/notes/new"> Notes </NavLink>
       <NavLink to="/notes/2/edit"> Edit Test </NavLink> */}
+      <NavLink to="/home">Home</NavLink>
       <Switch>
         <Route path="/login">
           <LoginForm />
@@ -37,6 +39,9 @@ function App() {
         </Route>
         <Route path="/notes/:noteId/edit">
           <EditNoteForm />
+        </Route>
+        <Route path="/home">
+          <NotebooksBar />
         </Route>
       </Switch>
     </div>
