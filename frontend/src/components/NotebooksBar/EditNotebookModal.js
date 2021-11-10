@@ -6,7 +6,6 @@ import './NotebooksBar.css';
 
 const EditNotebookModal = ({ notebook }) => {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
   return (
     <>
       <button onClick={() => setShowModal(true)}>
