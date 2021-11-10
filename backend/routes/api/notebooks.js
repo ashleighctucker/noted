@@ -84,4 +84,29 @@ router.post(
   })
 );
 
+router.put(
+  '/:id(\\d+)',
+  restoreUser,
+  validateNotebook,
+  asyncHandler(async (req, res, next) => {
+    const { title, photoUrl } = req.body;
+    const { user } = req;
+    if (!user) {
+      return next(
+        fetchNotebookError('You must be logged in to edit a notebook')
+      );
+    }
+    const notebookId = parseInt(req.params.id, 10);
+    const notebookToUpdate = await Notebook.findByPk(notebookId);
+    const notebook = { title, photoUrl, userId: user.dataValues.id };
+    if (+notebookToUpdate.userId !== +user.dataValues.id) {
+      return next(
+        fetchNotebookError('You are not authorized to edit this notebook')
+      );
+    }
+    await notebookToUpdate.update(notebook);
+    return res.json(notebookToUpdate);
+  })
+);
+
 module.exports = router;
