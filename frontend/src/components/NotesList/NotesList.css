@@ -14,6 +14,23 @@
   text-decoration: none;
 }
 
+.note-tile-selected {
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(197, 203, 227, 0.6);
+  padding: 3%;
+  border-radius: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  text-align: center;
+  margin: 1% 0;
+  box-shadow: 0 0 7px 1px rgb(199, 199, 199);
+  text-decoration: none;
+}
+
 .add-note-button {
   min-width: fit-content;
   white-space: nowrap;
