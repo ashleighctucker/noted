@@ -36,7 +36,11 @@ function App() {
           <SignupForm />
         </Route>
         <Route path="/notebooks/:notebookId/notes/new">
-          <NoteForm />
+          <div className="note-view-divider">
+            <NotebooksBar />
+            <NotesList />
+            <NoteForm />
+          </div>
         </Route>
         <Route path="/notebooks/:notebookId/notes/:noteId/edit">
           <div className="note-view-divider">
