@@ -63,16 +63,18 @@ router.post(
   restoreUser,
   validateNote,
   asyncHandler(async (req, res, next) => {
-    const { title, content } = req.body;
+    const { notebookId, title, content } = req.body;
     const { user } = req;
     if (!user) {
       return next(fetchNotesError('You must be logged in to create a note'));
     }
     const newNote = await Note.create({
       userId: user.dataValues.id,
+      notebookId,
       title,
       content,
     });
+
     return res.json(newNote);
   })
 );
@@ -89,7 +91,12 @@ router.put(
     }
     const noteId = parseInt(req.params.id, 10);
     const noteToUpdate = await Note.findByPk(noteId);
-    const note = { title, content, userId: user.dataValues.id };
+    const note = {
+      title,
+      content,
+      userId: user.dataValues.id,
+      notebookId: noteToUpdate.notebookId,
+    };
     if (+noteToUpdate.userId !== +user.dataValues.id) {
       return next(fetchNotesError('You are not authorized to edit this note'));
     }
