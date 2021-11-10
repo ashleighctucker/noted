@@ -1,4 +1,4 @@
-#note-form-container {
+.note-form-container {
   display: flex;
   justify-content: center;
   /* box-shadow: 0 0 7px 1px rgb(199, 199, 199); */

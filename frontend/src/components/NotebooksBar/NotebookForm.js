@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { addNotebook } from '../../store/notebooks';
 
-const NotebookForm = () => {
+const NotebookForm = ({ close }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -25,31 +25,36 @@ const NotebookForm = () => {
       }
     );
     if (notebook) {
+      close();
       history.push(`/notebooks/${notebook.id}/notes/new`);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+    <div id="notebook-modal">
+      <form id="note-form" onSubmit={handleSubmit}>
+        <div className="note-form-title-container">
+          <label className="note-title" htmlFor="title">
+            Title
+          </label>
           <input
+            className="note-title-input"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div>
+        <div className="photo-input-container">
           <label htmlFor="photoUrl">Notbook Cover Photo</label>
           <input
+            className="note-title-input"
             name="photoUrl"
             value={photoUrl}
-            placeholder="Insert a photo URL"
+            placeholder="Insert a photo URL (optional)"
             onChange={(e) => setPhotoUrl(e.target.value)}
           />
         </div>
-        <div>
+        <div className="note-button-container">
           <div className="error-div">
             <p className="user-form-errors">
               {errors.map((error, i) => (
@@ -57,9 +62,11 @@ const NotebookForm = () => {
               ))}
             </p>
           </div>
-          <button type="submit">
-            <i className="far fa-save"></i> Save
-          </button>
+          <div className="button-div">
+            <button className="note-button" type="submit">
+              <i className="far fa-save"></i> Save
+            </button>
+          </div>
         </div>
       </form>
     </div>

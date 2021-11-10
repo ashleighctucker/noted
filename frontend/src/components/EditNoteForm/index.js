@@ -58,7 +58,7 @@ const EditNoteForm = () => {
   };
 
   return (
-    <div id="note-form-container">
+    <div className="note-form-container">
       <form id="note-form" onSubmit={handleSubmit}>
         <div className="note-form-title-container">
           <label htmlFor="title" className="note-title">

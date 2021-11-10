@@ -15,7 +15,7 @@ const AddNotebookModal = () => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <NotebookForm />
+          <NotebookForm close={() => setShowModal(false)} />
         </Modal>
       )}
     </div>

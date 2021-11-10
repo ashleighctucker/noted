@@ -10,8 +10,9 @@ const NoteTile = ({ note }) => {
       to={`/notebooks/${note.notebookId}/notes/${note.id}/edit`}
     >
       <div className={selected ? 'note-tile-selected' : 'note-tile'}>
-        <p>{note.title}</p>
-        {/* <p>{note.content}</p> */}
+        <p>
+          {note.title} <i className="far fa-pencil"></i>
+        </p>
       </div>
     </NavLink>
   );
