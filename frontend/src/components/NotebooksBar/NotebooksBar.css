@@ -1,0 +1,34 @@
+.notebook-tile {
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
+  border-radius: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  text-align: center;
+  margin: 1% 0;
+  box-shadow: 0 0 7px 1px rgb(199, 199, 199);
+}
+
+.tile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
+}
+
+#notebooks-bar-container {
+  grid-area: bar;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#note-tiles-container {
+  grid-area: notes;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

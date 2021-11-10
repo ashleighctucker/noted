@@ -2,12 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 7px 1px rgb(199, 199, 199);
+  border-radius: 25px;
+  padding: 3%;
 }
 
 #note-form {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -27,7 +30,8 @@
 
 .note-title {
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 2%;
 }
 
 .note-title-input {

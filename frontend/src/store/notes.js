@@ -1,27 +1,27 @@
 const { csrfFetch } = require('./csrf');
 
-const LOAD_NOTES = 'notes/LOAD_NOTES';
-const ADD_NOTE = 'notes/ADD_NOTE';
-const UPDATE_NOTE = 'notes/UPDATE_NOTE';
-const REMOVE_NOTE = 'notes/REMOVE_NOTE';
+const LOAD = 'notes/LOAD';
+const ADD = 'notes/ADD';
+const UPDATE = 'notes/UPDATE';
+const REMOVE = 'notes/REMOVE';
 
 const load = (list) => ({
-  type: LOAD_NOTES,
+  type: LOAD,
   list,
 });
 
 const add = (note) => ({
-  type: ADD_NOTE,
+  type: ADD,
   note,
 });
 
 const update = (note) => ({
-  type: UPDATE_NOTE,
+  type: UPDATE,
   note,
 });
 
 const remove = (noteId) => ({
-  type: REMOVE_NOTE,
+  type: REMOVE,
   noteId,
 });
 
@@ -34,19 +34,19 @@ export const getNotes = () => async (dispatch) => {
   }
 };
 
-export const addNote = (title, content) => async (dispatch) => {
+export const addNote = (notebookId, title, content) => async (dispatch) => {
   const response = await csrfFetch('/api/notes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, content }),
+    body: JSON.stringify({ notebookId, title, content }),
   });
   const note = await response.json();
   dispatch(add(note));
   return note;
 };
 
-export const editNote = (id, title, content) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${id}`, {
+export const editNote = (noteId, title, content) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notes/${noteId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title, content }),
@@ -67,25 +67,25 @@ const initialState = {};
 
 const noteReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_NOTES: {
+    case LOAD: {
       const normalNotes = {};
       action.list.forEach((note) => {
         normalNotes[note.id] = note;
       });
       return { ...state, ...normalNotes };
     }
-    case ADD_NOTE:
+    case ADD:
       return {
         ...state,
         [action.note.id]: action.note,
       };
-    case UPDATE_NOTE: {
+    case UPDATE: {
       return {
         ...state,
         [action.note.id]: action.note,
       };
     }
-    case REMOVE_NOTE: {
+    case REMOVE: {
       const newState = { ...state };
       delete newState[action.noteId];
       return newState;

@@ -1,0 +1,39 @@
+.note-tile {
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
+  border-radius: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  text-align: center;
+  margin: 1% 0;
+  box-shadow: 0 0 7px 1px rgb(199, 199, 199);
+  text-decoration: none;
+}
+
+.add-note-button {
+  min-width: fit-content;
+  white-space: nowrap;
+  width: 2.5em;
+  font-size: 1rem;
+  min-height: fit-content;
+  height: 2.5em;
+  background-color: #D79922;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+}
+
+.add-note-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+}
