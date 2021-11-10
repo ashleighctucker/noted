@@ -1,4 +1,5 @@
 import { useHistory, useParams } from 'react-router-dom';
+import EditNotebookModal from './EditNotebookModal';
 
 const NotebookTile = ({ notebook }) => {
   const { notebookId } = useParams();
@@ -8,6 +9,17 @@ const NotebookTile = ({ notebook }) => {
   };
 
   const selected = +notebookId === notebook.id;
+
+  const Buttons = () => {
+    return (
+      <>
+        <EditNotebookModal notebook={notebook} />
+        <button>
+          <i className="far fa-trash-alt"></i> Delete
+        </button>
+      </>
+    );
+  };
 
   return (
     <div
@@ -25,6 +37,7 @@ const NotebookTile = ({ notebook }) => {
         alt="test"
       />
       <p>{notebook.title}</p>
+      <div>{selected ? <Buttons /> : null}</div>
     </div>
   );
 };

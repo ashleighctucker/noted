@@ -5,7 +5,7 @@ import { deleteNote, editNote } from '../../store/notes';
 import './EditNoteForm.css';
 
 const EditNoteForm = () => {
-  const { noteId, notebookId } = useParams();
+  const { noteId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const note = useSelector((state) => state.notes[noteId]);
   const dispatch = useDispatch();

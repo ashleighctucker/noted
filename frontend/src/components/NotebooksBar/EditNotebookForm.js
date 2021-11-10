@@ -1,30 +1,31 @@
 import { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { addNotebook } from '../../store/notebooks';
+import { editNotebook } from '../../store/notebooks';
 
-const NotebookForm = ({ close }) => {
+const EditNotebookForm = ({ close, notebook }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [title, setTitle] = useState('');
-  const [photoUrl, setPhotoUrl] = useState('');
+  const [title, setTitle] = useState(notebook.title);
+  const [photoUrl, setPhotoUrl] = useState(notebook.photoUrl);
   const [errors, setErrors] = useState([]);
+  console.log('open');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const notebook = await dispatch(addNotebook(title, photoUrl)).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          const filteredErrors = data.errors.filter(
-            (error) => error !== 'Invalid value'
-          );
-          setErrors(filteredErrors);
-        }
+    const editedNotebook = await dispatch(
+      editNotebook(notebook.id, title, photoUrl)
+    ).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) {
+        const filteredErrors = data.errors.filter(
+          (error) => error !== 'Invalid value'
+        );
+        setErrors(filteredErrors);
       }
-    );
-    if (notebook) {
+    });
+    if (editedNotebook) {
       close();
       history.push(`/notebooks/${notebook.id}/notes/new`);
     }
@@ -73,4 +74,4 @@ const NotebookForm = ({ close }) => {
   );
 };
 
-export default NotebookForm;
+export default EditNotebookForm;
