@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './SplashPage.css';
 
 const SplashPage = () => {
+  const sessionUser = useSelector((state) => state.session.user);
   return (
     <div id="spash-page-container">
       <div className="splash-page-containers">
@@ -12,12 +14,16 @@ const SplashPage = () => {
           Plan your next big project, create a quick to-do list, or anything
           in-between.
         </p>
-        <NavLink to="/signup">
-          <button id="splash-signup-button">Signup for free</button>
-        </NavLink>
-        <NavLink id="login-redirect" to="/login">
-          Already have an account? Login
-        </NavLink>
+        {!sessionUser && (
+          <>
+            <NavLink to="/signup">
+              <button id="splash-signup-button">Signup for free</button>
+            </NavLink>
+            <NavLink id="login-redirect" to="/login">
+              Already have an account? Login
+            </NavLink>
+          </>
+        )}
       </div>
       <div className="splash-page-containers">
         <img
