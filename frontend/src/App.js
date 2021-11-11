@@ -11,6 +11,7 @@ import EditNoteForm from './components/EditNoteForm';
 import NotebooksBar from './components/NotebooksBar';
 import NotesList from './components/NotesList';
 import SplashPage from './components/SplashPage';
+import FooterComponent from './components/FooterComponent';
 
 import { restoreUser } from './store/session';
 import { getNotebooks } from './store/notebooks';
@@ -74,6 +75,7 @@ function App() {
         </Route>
         {isLoaded ? <Routes /> : null}
       </Switch>
+      <FooterComponent />
     </div>
   );
 }
