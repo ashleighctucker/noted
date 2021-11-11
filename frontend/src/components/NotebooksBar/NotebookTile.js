@@ -16,6 +16,11 @@ const NotebookTile = ({ notebook }) => {
 
   const selected = +notebookId === notebook.id;
 
+  const deleteThis = () => {
+    dispatch(deleteNotebook(notebook.id));
+    history.push('/');
+  };
+
   useEffect(() => {
     setTile(notebook.title);
     setPhotoUrl(notebook.photoUrl);
@@ -25,7 +30,7 @@ const NotebookTile = ({ notebook }) => {
     return (
       <>
         <EditNotebookModal notebook={notebook} />
-        <button onClick={() => dispatch(deleteNotebook(notebook.id))}>
+        <button onClick={deleteThis}>
           <i className="far fa-trash-alt"></i> Delete
         </button>
       </>
