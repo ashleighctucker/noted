@@ -4,6 +4,7 @@ const LOAD = 'notes/LOAD';
 const ADD = 'notes/ADD';
 const UPDATE = 'notes/UPDATE';
 const REMOVE = 'notes/REMOVE';
+const RESET = 'notes/RESET_STATE';
 
 const load = (list) => ({
   type: LOAD,
@@ -23,6 +24,10 @@ const update = (note) => ({
 const remove = (noteId) => ({
   type: REMOVE,
   noteId,
+});
+
+const reset = () => ({
+  type: RESET,
 });
 
 export const getNotes = () => async (dispatch) => {
@@ -63,6 +68,10 @@ export const deleteNote = (id) => async (dispatch) => {
   return message;
 };
 
+export const resetNotes = () => async (dispatch) => {
+  dispatch(reset());
+};
+
 const initialState = {};
 
 const noteReducer = (state = initialState, action) => {
@@ -89,6 +98,9 @@ const noteReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.noteId];
       return newState;
+    }
+    case RESET: {
+      return {};
     }
     default:
       return state;

@@ -10,6 +10,8 @@ import NoteForm from './components/NoteForm';
 import EditNoteForm from './components/EditNoteForm';
 import NotebooksBar from './components/NotebooksBar';
 import NotesList from './components/NotesList';
+import SplashPage from './components/SplashPage';
+import FooterComponent from './components/FooterComponent';
 
 import { restoreUser } from './store/session';
 import { getNotebooks } from './store/notebooks';
@@ -67,10 +69,13 @@ function App() {
   return (
     <div>
       <Navigation isLoaded={isLoaded} />
-      {/* <NavLink to="/notes/new"> Notes </NavLink>
-      <NavLink to="/notes/2/edit"> Edit Test </NavLink> */}
-      <NavLink to="/home">Home</NavLink>
-      <Switch>{isLoaded ? <Routes /> : null}</Switch>
+      <Switch>
+        <Route exact path="/">
+          <SplashPage />
+        </Route>
+        {isLoaded ? <Routes /> : null}
+      </Switch>
+      <FooterComponent />
     </div>
   );
 }

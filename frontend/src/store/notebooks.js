@@ -4,6 +4,7 @@ const LOAD = 'notebooks/LOAD';
 const ADD = 'notebooks/ADD';
 const UPDATE = 'notebooks/UPDATE';
 const REMOVE = 'notebooks/REMOVE';
+const RESET = 'notebooks/RESET_STATE';
 
 const load = (list) => ({
   type: LOAD,
@@ -23,6 +24,10 @@ const update = (notebook) => ({
 const remove = (notebookId) => ({
   type: REMOVE,
   notebookId,
+});
+
+const reset = () => ({
+  type: RESET,
 });
 
 export const getNotebooks = () => async (dispatch) => {
@@ -65,6 +70,10 @@ export const deleteNotebook = (id) => async (dispatch) => {
   return message;
 };
 
+export const resetNotebooks = () => async (dispatch) => {
+  dispatch(reset());
+};
+
 const initialState = {};
 
 const notebookReducer = (state = initialState, action) => {
@@ -92,6 +101,9 @@ const notebookReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.notebookId];
       return newState;
+    }
+    case RESET: {
+      return {};
     }
     default:
       return state;
