@@ -8,7 +8,10 @@ const EditNotebookModal = ({ notebook }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
+      <button
+        className="edit-notebook-button"
+        onClick={() => setShowModal(true)}
+      >
         <i className="far fa-pencil"></i> Edit
       </button>
       {showModal && (

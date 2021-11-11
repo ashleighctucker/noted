@@ -14,6 +14,12 @@ const ProfileButton = ({ user }) => {
     setShowMenu(true);
   };
 
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(logoutUser());
+    history.push('/');
+  };
+
   useEffect(() => {
     setUsername(user.username);
   }, [user.username]);
@@ -29,12 +35,6 @@ const ProfileButton = ({ user }) => {
 
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(logoutUser());
-    history.push('/');
-  };
 
   return (
     <div id="profile-nav">

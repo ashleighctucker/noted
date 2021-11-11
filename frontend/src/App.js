@@ -12,22 +12,29 @@ import NotebooksBar from './components/NotebooksBar';
 import NotesList from './components/NotesList';
 
 import { restoreUser } from './store/session';
+import { getNotebooks } from './store/notebooks';
+import { getNotes } from './store/notes';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(restoreUser()).then(() => setIsLoaded(true));
+    const load = async () => {
+      const user = await dispatch(restoreUser());
+      if (user) {
+        await dispatch(getNotebooks());
+        await dispatch(getNotes()).then(() => setIsLoaded(true));
+      } else {
+        setIsLoaded(true);
+      }
+    };
+    load();
   }, [dispatch]);
 
-  return (
-    <div>
-      <Navigation isLoaded={isLoaded} />
-      {/* <NavLink to="/notes/new"> Notes </NavLink>
-      <NavLink to="/notes/2/edit"> Edit Test </NavLink> */}
-      <NavLink to="/home">Home</NavLink>
-      <Switch>
+  const Routes = () => {
+    return (
+      <>
         <Route path="/login">
           <LoginForm />
         </Route>
@@ -53,7 +60,17 @@ function App() {
             <NotebooksBar />
           </div>
         </Route>
-      </Switch>
+      </>
+    );
+  };
+
+  return (
+    <div>
+      <Navigation isLoaded={isLoaded} />
+      {/* <NavLink to="/notes/new"> Notes </NavLink>
+      <NavLink to="/notes/2/edit"> Edit Test </NavLink> */}
+      <NavLink to="/home">Home</NavLink>
+      <Switch>{isLoaded ? <Routes /> : null}</Switch>
     </div>
   );
 }
