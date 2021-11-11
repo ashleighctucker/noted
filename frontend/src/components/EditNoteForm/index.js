@@ -36,7 +36,7 @@ const EditNoteForm = () => {
       }
     );
     if (res) {
-      history.push('/');
+      history.push(`/notebooks/${notebookId}/notes/new`);
     }
   };
 
@@ -55,7 +55,7 @@ const EditNoteForm = () => {
       }
     );
     if (note) {
-      history.push('/');
+      history.push(`/notebooks/${notebookId}/notes/new`);
     }
   };
 

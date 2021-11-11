@@ -8,13 +8,14 @@ const NotebookTile = ({ notebook }) => {
   const { notebookId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const handleClick = () => {
-    history.push(`/notebooks/${notebook.id}/notes/new`);
-  };
   const [title, setTile] = useState(notebook.title);
   const [photoUrl, setPhotoUrl] = useState(notebook.photoUrl);
 
   const selected = +notebookId === notebook.id;
+
+  const handleClick = () => {
+    history.push(`/notebooks/${notebook.id}/notes/new`);
+  };
 
   const deleteThis = () => {
     dispatch(deleteNotebook(notebook.id));
@@ -30,7 +31,7 @@ const NotebookTile = ({ notebook }) => {
     return (
       <>
         <EditNotebookModal notebook={notebook} />
-        <button onClick={deleteThis}>
+        <button className="delete-notebook-button" onClick={deleteThis}>
           <i className="far fa-trash-alt"></i> Delete
         </button>
       </>

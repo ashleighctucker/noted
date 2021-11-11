@@ -8,6 +8,7 @@ import './Navigation.css';
 const Navigation = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
   const demoLogin = () => {
     dispatch(loginUser('demo', 'password'));
   };
