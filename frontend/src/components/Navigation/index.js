@@ -15,7 +15,14 @@ const Navigation = ({ isLoaded }) => {
 
   let links;
   if (sessionUser) {
-    links = <ProfileButton id="profile-button" user={sessionUser} />;
+    links = (
+      <>
+        <NavLink id="nav-notes-link" to="/home">
+          <i class="far fa-book-open fa-lg"></i> Notes
+        </NavLink>
+        <ProfileButton id="profile-button" user={sessionUser} />
+      </>
+    );
   } else {
     links = (
       <>
