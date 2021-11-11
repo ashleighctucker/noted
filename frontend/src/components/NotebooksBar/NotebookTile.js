@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { deleteNotebook } from '../../store/notebooks';
 import EditNotebookModal from './EditNotebookModal';
 
 const NotebookTile = ({ notebook }) => {
   const { notebookId } = useParams();
+  const dispatch = useDispatch();
   const history = useHistory();
   const handleClick = () => {
     history.push(`/notebooks/${notebook.id}/notes/new`);
@@ -23,7 +25,7 @@ const NotebookTile = ({ notebook }) => {
     return (
       <>
         <EditNotebookModal notebook={notebook} />
-        <button>
+        <button onClick={() => dispatch(deleteNotebook(notebook.id))}>
           <i className="far fa-trash-alt"></i> Delete
         </button>
       </>

@@ -10,7 +10,6 @@ const EditNoteForm = () => {
   const note = useSelector((state) => state.notes[noteId]);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(note);
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
   const [errors, setErrors] = useState([]);
