@@ -34,7 +34,8 @@ export const logoutUser = () => async (dispatch) => {
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch('/api/session');
   const user = await response.json();
-  if (!user) dispatch(removeSession());
+  console.log(user, user.user);
+  if (!user.user) dispatch(removeSession());
   else dispatch(setSession(user.user));
   return user.user;
 };

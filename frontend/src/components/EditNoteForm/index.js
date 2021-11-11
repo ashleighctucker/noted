@@ -5,11 +5,12 @@ import { deleteNote, editNote } from '../../store/notes';
 import './EditNoteForm.css';
 
 const EditNoteForm = () => {
-  const { noteId } = useParams();
+  const { noteId, notebookId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const note = useSelector((state) => state.notes[noteId]);
   const dispatch = useDispatch();
   const history = useHistory();
+  console.log(note);
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
   const [errors, setErrors] = useState([]);
@@ -24,15 +25,17 @@ const EditNoteForm = () => {
   }
 
   const handleDelete = async () => {
-    const res = await dispatch(deleteNote(noteId)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) {
-        const filteredErrors = data.errors.filter(
-          (error) => error !== 'Invalid value'
-        );
-        setErrors(filteredErrors);
+    const res = await dispatch(deleteNote(noteId, notebookId)).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
+        }
       }
-    });
+    );
     if (res) {
       history.push('/');
     }
