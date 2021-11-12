@@ -19,6 +19,12 @@
   height: 1.1rem;
 }
 
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #search-button {
   min-width: fit-content;
   font-size: 1rem;
