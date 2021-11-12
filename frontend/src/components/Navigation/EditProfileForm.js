@@ -30,21 +30,6 @@ const EditProfileForm = ({ user, close }) => {
     setUsername(user.username);
   }, [user.username]);
 
-  let buttonOption;
-  if (user.username === 'demo') {
-    buttonOption = (
-      <button className="edit-notebook-button" type="submit" disabled={true}>
-        Edit Acount (Demo)
-      </button>
-    );
-  } else {
-    buttonOption = (
-      <button className="edit-notebook-button" type="submit">
-        Edit Acount
-      </button>
-    );
-  }
-
   return (
     <div className="profile-dropdown">
       <div id="hello">Hello, {username}!</div>
