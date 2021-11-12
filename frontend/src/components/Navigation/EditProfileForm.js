@@ -16,14 +16,13 @@ const EditProfileForm = ({ user, close }) => {
     await dispatch(logoutUser());
     await dispatch(resetNotebooks());
     await dispatch(resetNotes());
-    history.push('/');
+    window.location.reload();
   };
 
   const editHandle = async (e) => {
     e.preventDefault();
     await dispatch(editProfile(user.id, username, email));
     history.push('/');
-    close();
   };
 
   useEffect(() => {

@@ -3,15 +3,17 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { loginUser } from '../../store/session';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './Navigation.css';
-// import { useEffect } from 'react';
 
 const Navigation = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const demoLogin = () => {
-    dispatch(loginUser('demo', 'password'));
+  const demoLogin = async () => {
+    await dispatch(loginUser('demo', 'password'));
+    history.push('/home');
   };
 
   let links;

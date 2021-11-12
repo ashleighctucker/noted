@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useEffect } from 'react';
 
 import LoginForm from './components/LoginForm';
@@ -21,14 +21,10 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const history = useHistory();
-  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     const load = async () => {
-      let user;
-      if (sessionUser?.id) {
-        user = await dispatch(restoreUser());
-      }
+      const user = await dispatch(restoreUser())
       if (user) {
         await dispatch(getNotebooks());
         await dispatch(getNotes()).then(() => setIsLoaded(true));
@@ -38,7 +34,7 @@ function App() {
       }
     };
     load();
-  }, [dispatch, history, sessionUser?.id]);
+  }, [dispatch, history]);
 
   const Routes = () => {
     return (
