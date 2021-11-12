@@ -4,6 +4,7 @@ import ProfileButton from './ProfileButton';
 import { loginUser } from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import SearchBar from './SearchBar';
 import './Navigation.css';
 
 const Navigation = ({ isLoaded }) => {
@@ -44,10 +45,13 @@ const Navigation = ({ isLoaded }) => {
     <header className="nav-header">
       <nav id="navbar">
         <div id="logo-nav">
-          <NavLink className="nav-link" id="logo" to="/">
-            noted.
-          </NavLink>
+          <div>
+            <NavLink className="nav-link" id="logo" to="/">
+              noted.
+            </NavLink>
+          </div>
         </div>
+        <div id="search-bar-container">{sessionUser && <SearchBar />}</div>
         <div id="links">{isLoaded && links}</div>
       </nav>
     </header>
