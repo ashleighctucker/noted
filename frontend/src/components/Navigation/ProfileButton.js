@@ -14,7 +14,7 @@ const ProfileButton = ({ user }) => {
       />
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditProfileForm user={user} />
+          <EditProfileForm user={user} close={() => setShowModal(false)} />
         </Modal>
       )}
     </div>

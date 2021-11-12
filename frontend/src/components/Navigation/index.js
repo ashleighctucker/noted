@@ -3,14 +3,17 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { loginUser } from '../../store/session';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const demoLogin = () => {
-    dispatch(loginUser('demo', 'password'));
+  const demoLogin = async () => {
+    await dispatch(loginUser('demo', 'password'));
+    history.push('/home');
   };
 
   let links;
@@ -18,7 +21,7 @@ const Navigation = ({ isLoaded }) => {
     links = (
       <>
         <NavLink id="nav-notes-link" to="/home">
-          <i class="far fa-book-open fa-lg"></i> Notes
+          <i className="far fa-book-open fa-lg"></i> Notes
         </NavLink>
         <ProfileButton id="profile-button" user={sessionUser} />
       </>

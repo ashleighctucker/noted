@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { loginUser } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -18,7 +19,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(loginUser(credential, password)).catch(async (res) => {
+    await dispatch(loginUser(credential, password)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) {
         const filteredErrors = data.errors.filter(
@@ -27,6 +28,7 @@ const LoginForm = () => {
         setErrors(filteredErrors);
       }
     });
+    history.push('/home');
   };
   return (
     <div className="form-container">

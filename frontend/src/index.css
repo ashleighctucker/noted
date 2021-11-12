@@ -3,5 +3,12 @@
 .note-view-divider {
   display: grid;
   grid-template-areas: 'bar notes form';
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr .5fr 2fr;
+}
+
+@media screen and (max-width: 1000px) {
+  .note-view-divider {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }

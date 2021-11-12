@@ -11,7 +11,7 @@ const FooterComponent = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <i class="fab fa-github"></i>
+            <i className="fab fa-github"></i>
           </a>
           {'   '}
           <a
@@ -19,7 +19,7 @@ const FooterComponent = () => {
             rel="noreferrer"
             href="https://www.linkedin.com/in/ashleighctucker/"
           >
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-linkedin"></i>
           </a>
         </span>
       </div>
