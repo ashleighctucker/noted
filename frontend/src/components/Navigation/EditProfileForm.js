@@ -23,7 +23,7 @@ const EditProfileForm = ({ user, close }) => {
     e.preventDefault();
     await dispatch(editProfile(user.id, username, email));
     history.push('/');
-    // close();
+    close();
   };
 
   useEffect(() => {
@@ -67,7 +67,19 @@ const EditProfileForm = ({ user, close }) => {
             ></input>
           </div>
           <div className="note-button-container">
-            {buttonOption}
+            {user.username === 'demo' ? (
+              <button
+                className="edit-notebook-button"
+                type="submit"
+                disabled={true}
+              >
+                Edit Acount (Demo)
+              </button>
+            ) : (
+              <button className="edit-notebook-button" type="submit">
+                Edit Acount
+              </button>
+            )}
             <button id="logout-button" onClick={logout}>
               <i className="far fa-sign-out "></i> Logout
             </button>
