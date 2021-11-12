@@ -19,16 +19,20 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    await dispatch(loginUser(credential, password)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) {
-        const filteredErrors = data.errors.filter(
-          (error) => error !== 'Invalid value'
-        );
-        setErrors(filteredErrors);
+    const user = await dispatch(loginUser(credential, password)).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          const filteredErrors = data.errors.filter(
+            (error) => error !== 'Invalid value'
+          );
+          setErrors(filteredErrors);
+        }
       }
-    });
-    history.push('/home');
+    );
+    if (user) {
+      history.push('/home');
+    }
   };
   return (
     <div className="form-container">

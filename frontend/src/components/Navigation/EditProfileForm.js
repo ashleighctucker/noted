@@ -32,7 +32,9 @@ const EditProfileForm = ({ user, close }) => {
         setErrors(filteredErrors);
       }
     });
-    window.location.reload();
+    if (errors.length === 0) {
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
