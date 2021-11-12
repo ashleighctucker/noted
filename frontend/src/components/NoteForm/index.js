@@ -32,7 +32,9 @@ const NoteForm = () => {
       }
     );
     if (note) {
-      history.push('/');
+      history.push(`/notebooks/${notebookId}/notes/new`);
+      setTitle('');
+      setContent('');
     }
   };
 

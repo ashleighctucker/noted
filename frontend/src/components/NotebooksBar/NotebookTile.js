@@ -19,7 +19,7 @@ const NotebookTile = ({ notebook }) => {
 
   const deleteThis = () => {
     dispatch(deleteNotebook(notebook.id));
-    history.push('/');
+    history.push('/home');
   };
 
   useEffect(() => {
