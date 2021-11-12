@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { logoutUser } from '../../store/session';
 import { resetNotebooks } from '../../store/notebooks';
 import { resetNotes } from '../../store/notes';
@@ -8,7 +7,6 @@ import { editProfile } from '../../store/session';
 
 const EditProfileForm = ({ user, close }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [errors, setErrors] = useState([]);
