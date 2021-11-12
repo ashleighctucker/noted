@@ -26,9 +26,10 @@ const NotesList = () => {
   if (!sessionUser) {
     return <Redirect to="/login" />;
   }
-  
+
   return (
     <div id="note-tiles-container">
+      <div className="div-header">Notes</div>
       {notes?.map((note) => (
         <NoteTile key={note.id} note={note} />
       ))}

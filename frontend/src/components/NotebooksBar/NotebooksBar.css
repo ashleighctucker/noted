@@ -11,6 +11,12 @@
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
 }
 
+.div-header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  padding: 3%;
+}
+
 .edit-notebook-button {
   min-width: fit-content;
   font-size: .85rem;

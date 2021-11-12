@@ -37,6 +37,7 @@ const NotebooksBar = () => {
 
   return (
     <div id="notebooks-bar-container">
+      <div className="div-header">Notebooks</div>
       {notebooks ? createTile(notebooks) : null}
       <AddNotebookModal />
     </div>
