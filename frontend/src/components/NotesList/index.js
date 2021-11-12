@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, Redirect } from 'react-router-dom';
 
 import { getNotes } from '../../store/notes';
 import NoteTile from './NoteTile';
@@ -10,6 +10,7 @@ const NotesList = () => {
   const { notebookId } = useParams();
   const dispatch = useDispatch();
   const unfilteredNotes = useSelector((state) => state.notes);
+  const sessionUser = useSelector((state) => state.session.user);
 
   let notes = [];
   for (const note in unfilteredNotes) {
@@ -22,6 +23,10 @@ const NotesList = () => {
     dispatch(getNotes());
   }, [dispatch]);
 
+  if (!sessionUser) {
+    return <Redirect to="/login" />;
+  }
+  
   return (
     <div id="note-tiles-container">
       {notes?.map((note) => (

@@ -34,7 +34,6 @@ export const logoutUser = () => async (dispatch) => {
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch('/api/session');
   const user = await response.json();
-  console.log(user, user.user);
   if (!user.user) dispatch(removeSession());
   else dispatch(setSession(user.user));
   return user.user;
@@ -49,6 +48,17 @@ export const signup = (username, email, password) => async (dispatch) => {
   const newUser = await response.json();
   dispatch(setSession(newUser));
   return newUser;
+};
+
+export const editProfile = (id, username, email) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, email }),
+  });
+  const user = await response.json();
+  dispatch(setSession(user));
+  return user;
 };
 
 const initialState = { user: null };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import LoginForm from './components/LoginForm';
@@ -20,19 +20,25 @@ import { getNotes } from './store/notes';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     const load = async () => {
-      const user = await dispatch(restoreUser());
+      let user;
+      if (sessionUser) {
+        user = await dispatch(restoreUser());
+      }
       if (user) {
         await dispatch(getNotebooks());
         await dispatch(getNotes()).then(() => setIsLoaded(true));
       } else {
+        history.push('/');
         setIsLoaded(true);
       }
     };
     load();
-  }, [dispatch]);
+  }, [dispatch, history, sessionUser]);
 
   const Routes = () => {
     return (

@@ -4,6 +4,7 @@ import ProfileButton from './ProfileButton';
 import { loginUser } from '../../store/session';
 import { useDispatch } from 'react-redux';
 import './Navigation.css';
+// import { useEffect } from 'react';
 
 const Navigation = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -13,12 +14,13 @@ const Navigation = ({ isLoaded }) => {
     dispatch(loginUser('demo', 'password'));
   };
 
+  console.log(sessionUser);
   let links;
   if (sessionUser) {
     links = (
       <>
         <NavLink id="nav-notes-link" to="/home">
-          <i class="far fa-book-open fa-lg"></i> Notes
+          <i className="far fa-book-open fa-lg"></i> Notes
         </NavLink>
         <ProfileButton id="profile-button" user={sessionUser} />
       </>
