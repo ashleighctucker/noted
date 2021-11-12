@@ -11,6 +11,7 @@ import { ModalProvider } from './context/Modal';
 import * as sessionActions from './store/session';
 import * as noteActions from './store/notes';
 import * as notebookActions from './store/notebooks';
+import * as searchActions from './store/search';
 
 const store = configureStore();
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.noteActions = noteActions;
   window.notebookActions = notebookActions;
+  window.searchActions = searchActions;
 }
 
 function Root() {
