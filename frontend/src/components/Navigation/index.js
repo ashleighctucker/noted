@@ -14,7 +14,6 @@ const Navigation = ({ isLoaded }) => {
     dispatch(loginUser('demo', 'password'));
   };
 
-  console.log(sessionUser);
   let links;
   if (sessionUser) {
     links = (

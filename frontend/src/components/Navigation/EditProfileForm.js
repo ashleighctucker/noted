@@ -30,6 +30,21 @@ const EditProfileForm = ({ user, close }) => {
     setUsername(user.username);
   }, [user.username]);
 
+  let buttonOption;
+  if (user.username === 'demo') {
+    buttonOption = (
+      <button className="edit-notebook-button" type="submit" disabled={true}>
+        Edit Acount (Demo)
+      </button>
+    );
+  } else {
+    buttonOption = (
+      <button className="edit-notebook-button" type="submit">
+        Edit Acount
+      </button>
+    );
+  }
+
   return (
     <div className="profile-dropdown">
       <div id="hello">Hello, {username}!</div>
@@ -52,9 +67,7 @@ const EditProfileForm = ({ user, close }) => {
             ></input>
           </div>
           <div className="note-button-container">
-            <button className="edit-notebook-button" type="submit">
-              Edit Acount
-            </button>
+            {buttonOption}
             <button id="logout-button" onClick={logout}>
               <i className="far fa-sign-out "></i> Logout
             </button>

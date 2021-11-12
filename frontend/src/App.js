@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const load = async () => {
       let user;
-      if (sessionUser) {
+      if (sessionUser?.id) {
         user = await dispatch(restoreUser());
       }
       if (user) {
@@ -38,7 +38,7 @@ function App() {
       }
     };
     load();
-  }, [dispatch, history, sessionUser]);
+  }, [dispatch, history, sessionUser?.id]);
 
   const Routes = () => {
     return (
