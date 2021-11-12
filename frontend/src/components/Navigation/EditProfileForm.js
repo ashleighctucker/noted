@@ -32,7 +32,7 @@ const EditProfileForm = ({ user, close }) => {
         setErrors(filteredErrors);
       }
     });
-    history.push('/');
+    window.location.reload();
   };
 
   useEffect(() => {
