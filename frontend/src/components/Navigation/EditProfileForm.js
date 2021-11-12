@@ -11,6 +11,7 @@ const EditProfileForm = ({ user, close }) => {
   const history = useHistory();
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
+  const [errors, setErrors] = useState([]);
 
   const logout = async () => {
     await dispatch(logoutUser());
@@ -21,7 +22,16 @@ const EditProfileForm = ({ user, close }) => {
 
   const editHandle = async (e) => {
     e.preventDefault();
-    await dispatch(editProfile(user.id, username, email));
+    setErrors([]);
+    await dispatch(editProfile(user.id, username, email)).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) {
+        const filteredErrors = data.errors.filter(
+          (error) => error !== 'Invalid value'
+        );
+        setErrors(filteredErrors);
+      }
+    });
     history.push('/');
   };
 
@@ -49,6 +59,13 @@ const EditProfileForm = ({ user, close }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
+          </div>
+          <div className="error-div">
+            <p className="user-form-errors">
+              {errors.map((error, i) => (
+                <span key={i}>{error}</span>
+              ))}
+            </p>
           </div>
           <div className="note-button-container">
             {user.username === 'demo' ? (
