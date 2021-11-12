@@ -48,5 +48,7 @@ You can start the servers by running `npm start` in your console in both the fro
 ---- Future Features for noted.: ----
 
 Rich text editing 
+
 Note/Notebook categories
+
 Flagging notes
