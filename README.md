@@ -4,6 +4,12 @@ Here is a link to the live site: https://noted-live.herokuapp.com
 
 noted. is a clone of Evernote with CRUD operations for notebooks and notes. It also includes the ability to edit your username and email, if you aren't logged into the demo user. Most of these features are only available when logged into the site, you can create an account and try it yourself at https://noted-live.herokuapp.com/signup!
 
+Database Schema: 
+https://github.com/ashleighctucker/noted/wiki/Database-Schema
+
+Current MVPs:
+https://github.com/ashleighctucker/noted/wiki/MVPs
+
 ----  Tech-Stack: ----
 
 Javascript 
