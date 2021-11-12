@@ -6,12 +6,18 @@ noted. is a clone of Evernote with CRUD operations for notebooks and notes. It a
 
 ----  Tech-Stack: ----
 
-Javascript
+Javascript 
+
 node.js
+
 Sequelize
+
 Express.js
+
 React JS 
+
 Redux
+
 Faker API
 
 ---- Want to contribute to noted. or try it out locally? noted. requires Postgres. ----
