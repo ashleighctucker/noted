@@ -23,16 +23,18 @@ const SignupForm = () => {
     if (confirmPassword !== password) {
       return setErrors(['Passwords do not match.']);
     } else {
-      await dispatch(signup(username, email, password)).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          const filteredErrors = data.errors.filter(
-            (error) => error !== 'Invalid value'
-          );
-          setErrors(filteredErrors);
+      const newUser = await dispatch(signup(username, email, password)).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            const filteredErrors = data.errors.filter(
+              (error) => error !== 'Invalid value'
+            );
+            setErrors(filteredErrors);
+          }
         }
-      });
-      return await dispatch(loginUser(username, password));
+      );
+      if (newUser) return await dispatch(loginUser(username, password));
     }
   };
 

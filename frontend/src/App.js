@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import LoginForm from './components/LoginForm';
@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     const load = async () => {
-      const user = await dispatch(restoreUser())
+      const user = await dispatch(restoreUser());
       if (user) {
         await dispatch(getNotebooks());
         await dispatch(getNotes()).then(() => setIsLoaded(true));
@@ -69,16 +69,18 @@ function App() {
   };
 
   return (
-    <div>
-      <Navigation isLoaded={isLoaded} />
-      <Switch>
-        <Route exact path="/">
-          <SplashPage />
-        </Route>
-        {isLoaded ? <Routes /> : null}
-      </Switch>
-      <FooterComponent />
-    </div>
+    <>
+      <div className="content">
+        <Navigation isLoaded={isLoaded} />
+        <Switch>
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
+          {isLoaded ? <Routes /> : null}
+        </Switch>
+      </div>
+      <FooterComponent className="footer" />
+    </>
   );
 }
 

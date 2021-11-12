@@ -1,5 +1,22 @@
 /* TODO Add site wide styles */
 
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
 .note-view-divider {
   display: grid;
   grid-template-areas: 'bar notes form';
