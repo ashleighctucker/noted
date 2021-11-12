@@ -12,6 +12,7 @@ import NotebooksBar from './components/NotebooksBar';
 import NotesList from './components/NotesList';
 import SplashPage from './components/SplashPage';
 import FooterComponent from './components/FooterComponent';
+import SearchResults from './components/SearchResults';
 
 import { restoreUser } from './store/session';
 import { getNotebooks } from './store/notebooks';
@@ -63,6 +64,9 @@ function App() {
           <div className="note-view-divider">
             <NotebooksBar />
           </div>
+        </Route>
+        <Route path="/search-results">
+          <SearchResults />
         </Route>
       </>
     );

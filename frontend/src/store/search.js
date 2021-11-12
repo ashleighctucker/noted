@@ -8,7 +8,9 @@ const load = (list) => ({
 });
 
 export const searchNotebooks = (term) => async (dispatch) => {
-  const response = await csrfFetch(`/api/search/${term}`);
+  const response = await csrfFetch(
+    `/api/search/${term === '' ? 'note' : term}`
+  );
   const notebooks = await response.json();
   dispatch(load(notebooks));
   return notebooks;
