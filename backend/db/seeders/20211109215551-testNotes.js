@@ -33,14 +33,10 @@ module.exports = {
     ];
 
     async function createNotes(usersEnd, usersStart, notes) {
-      console.log('here');
       let result = [];
       for (let j = usersStart; j < usersEnd; j++) {
-        console.log('here', j);
         const usersNotebooks = await Notebook.findAll({ where: { userId: j } });
-        // let usersNotebooks = await Notebook.findAll();
-        console.log('here');
-        console.log(usersNotebooks);
+
         for (let i = 0; i < notes.length; i++) {
           let currentNote = { ...notes[i] };
           currentNote['userId'] = j;
@@ -50,18 +46,16 @@ module.exports = {
           if (chosenNotebook === 0) {
             chosenNotebook = 1;
           }
-          console.log(usersNotebooks);
-          currentNote['noteboodId'] = usersNotebooks[chosenNotebook].id;
+          currentNote['notebookId'] = usersNotebooks[chosenNotebook].id;
           result.push(currentNote);
         }
-        return result;
       }
+      return result;
     }
 
     const numUsers = await User.count();
-    console.log('here');
 
-    let notesArray = createNotes(numUsers, 1, notes);
+    let notesArray = await createNotes(numUsers, 1, notes);
 
     return queryInterface.bulkInsert('Notes', notesArray, {});
   },
