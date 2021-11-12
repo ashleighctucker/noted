@@ -1,9 +1,11 @@
 #footer-link-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
   font-size: .9rem;
-  margin-top: 5%;
+  bottom: 0px;
+  margin-bottom: 1%;
 }

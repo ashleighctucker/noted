@@ -2,7 +2,7 @@ import './FooterComponent.css';
 
 const FooterComponent = () => {
   return (
-    <div>
+    <div id="footer-div">
       <div id="footer-link-container">
         <span>
           Created by: Ash Tucker{'   '}
