@@ -77,7 +77,7 @@ const EditProfileForm = ({ user, close }) => {
                 Edit Acount (Demo)
               </button>
             ) : (
-              <button className="edit-notebook-button" type="submit">
+              <button className="edit-profile-button" type="submit">
                 Edit Acount
               </button>
             )}
