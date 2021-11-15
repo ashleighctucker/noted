@@ -70,7 +70,7 @@ const EditProfileForm = ({ user, close }) => {
           <div className="note-button-container">
             {user.username === 'demo' ? (
               <button
-                className="edit-notebook-button"
+                className="edit-profile-button"
                 type="submit"
                 disabled={true}
               >

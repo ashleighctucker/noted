@@ -123,15 +123,46 @@
   width: 30vw;
 }
 
+.edit-profile-button {
+  min-width: fit-content;
+  font-size: .85rem;
+  min-height: fit-content;
+  background-color: #4056A1;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+  padding: 2%;
+}
+
 @media screen and (max-width: 1000px) {
   #navbar {
     display: grid;
     width: 100%;
-    grid-template-areas: "a b ";
+    grid-template-areas: "a b" "c c";
     grid-template-columns: 1fr 1fr;
     gap: 1%;
   }
   #search-bar-container {
-    display: none;
+    display: c;
+    padding: 5%;
+  }
+  #search-bar {
+    width: 20rem;
+    height: 1.1rem;
+  }
+  #logout-button {
+    min-width: fit-content;
+    font-size: .85rem;
+    min-height: fit-content;
+    height: fit-content;
+    background-color: #F13c20;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+    padding: 2%;
   }
 }

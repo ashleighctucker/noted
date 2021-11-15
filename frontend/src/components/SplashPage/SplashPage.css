@@ -48,8 +48,8 @@
 
 @media screen and (max-width: 1000px) {
   #notebook-image {
-    width: 600px;
-    height: 650px;
+    width: 500px;
+    height: 550px;
     transform: rotate(0deg);
   }
   #opener {
@@ -61,5 +61,8 @@
   }
   #opener-2 {
     font-size: 1rem;
+  }
+  .splash-page-containers {
+    padding: 1%;
   }
 }
