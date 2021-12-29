@@ -1,32 +1,30 @@
----- Welcome to noted.! A clone of Evernote (https://evernote.com)! Currently a WIP. -----
+# Welcome to noted.! A clone of [Evernote](https://evernote.com)!
 
-Here is a link to the live site: https://noted-live.herokuapp.com
+Here is a link to the [live site](https://noted-live.herokuapp.com)
 
-noted. is a clone of Evernote with CRUD operations for notebooks and notes. It also includes the ability to edit your username and email, if you aren't logged into the demo user. Most of these features are only available when logged into the site, you can create an account and try it yourself at https://noted-live.herokuapp.com/signup!
+noted. is a clone of Evernote with CRUD operations for notebooks and notes. It also includes the ability to edit your username and email, if you aren't logged into the demo user. Most of these features are only available when logged into the site, you can create an account and try it yourself [here](https://noted-live.herokuapp.com/signup)!
 
-Database Schema: 
-https://github.com/ashleighctucker/noted/wiki/Database-Schema
+![Preview](https://github.com/ashleighctucker/noted/blob/main/images/noted-preview.gif)
 
-Current MVPs:
-https://github.com/ashleighctucker/noted/wiki/MVPs
+## [Database Schema](https://github.com/ashleighctucker/noted/wiki/Database-Schema)
 
-----  Tech-Stack: ----
+## [Current MVPs](https://github.com/ashleighctucker/noted/wiki/MVPs)
 
-Javascript 
+##  Tech-Stack
 
-node.js
+* ![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+* ![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+* ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
+* ![NODE JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+* ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+* ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+* ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+* ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+* ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+* Sequelize
+* Faker 
 
-Sequelize
-
-Express.js
-
-React JS 
-
-Redux
-
-Faker API
-
----- Want to contribute to noted. or try it out locally? noted. requires Postgres. ----
+## Want to contribute to noted. or try it out locally? noted. requires Postgres.
 
 1. Clone our repo with the command: `git clone https://github.com/ashleighctucker/noted.git`
 
@@ -45,7 +43,7 @@ Faker API
 You can start the servers by running `npm start` in your console in both the frontend and backend directories. Happy coding!
 
 
----- Future Features for noted.: ----
+## Future Features for noted.
 
 Rich text editing 
 
