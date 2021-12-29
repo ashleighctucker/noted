@@ -86,7 +86,6 @@ router.patch(
     const userToEdit = await User.findByPk(userId);
     if (userToEdit) {
       const usernameCheck = await User.findOne({ where: { username } });
-      console.log(usernameCheck);
       if (usernameCheck && usernameCheck.id !== userToEdit.id) {
         return next(
           editProfileError(
