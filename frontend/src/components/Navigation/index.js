@@ -36,7 +36,9 @@ const Navigation = ({ isLoaded }) => {
         <NavLink className="nav-link" to="/signup">
           Signup
         </NavLink>
-        <span onClick={demoLogin}>Demo</span>
+        <span className="nav-link" onClick={demoLogin}>
+          Demo
+        </span>
       </>
     );
   }
