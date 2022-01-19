@@ -23,6 +23,10 @@ html, body, #root {
   grid-template-columns: 1fr .5fr 2fr;
 }
 
+button {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1000px) {
   .note-view-divider {
     display: flex;

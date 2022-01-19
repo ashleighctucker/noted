@@ -10,7 +10,6 @@ const EditProfileForm = ({ user, close }) => {
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [errors, setErrors] = useState([]);
-  console.log(user);
 
   const logout = async () => {
     await dispatch(logoutUser());
