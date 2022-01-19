@@ -10,6 +10,7 @@ const EditProfileForm = ({ user, close }) => {
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [errors, setErrors] = useState([]);
+  console.log(user);
 
   const logout = async () => {
     await dispatch(logoutUser());
@@ -68,13 +69,13 @@ const EditProfileForm = ({ user, close }) => {
             </p>
           </div>
           <div className="note-button-container">
-            {user.username === 'demo' ? (
+            {user.id === 1 ? (
               <button
                 className="edit-profile-button"
                 type="submit"
                 disabled={true}
               >
-                Edit Acount (Demo)
+                Edit Disabled (Demo)
               </button>
             ) : (
               <button className="edit-profile-button" type="submit">

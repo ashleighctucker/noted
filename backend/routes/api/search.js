@@ -16,7 +16,6 @@ const searchError = (message) => {
 };
 
 async function searchNotebooks(term, id) {
-  console.log(term, id);
   const notebooks = await Notebook.findAll({
     where: {
       userId: id,

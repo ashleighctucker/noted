@@ -109,6 +109,7 @@
   text-decoration: none;
   color: inherit;
   padding: 2%;
+  cursor: pointer;
 }
 
 .profile-dropdown {
@@ -140,18 +141,21 @@
   #navbar {
     display: grid;
     width: 100%;
-    grid-template-areas: "a b" "c c";
+    grid-template-areas: "a b""c c";
     grid-template-columns: 1fr 1fr;
     gap: 1%;
   }
+
   #search-bar-container {
     display: c;
     padding: 5%;
   }
+
   #search-bar {
     width: 20rem;
     height: 1.1rem;
   }
+
   #logout-button {
     min-width: fit-content;
     font-size: .85rem;
