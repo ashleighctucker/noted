@@ -1,14 +1,21 @@
-# Welcome to noted.! A clone of [Evernote](https://evernote.com)!
+# Welcome to noted. 
+<img src="https://i.imgur.com/WPBPVC7.png" alt="notebook" width="400">
 
-Here is a link to the [live site](https://noted-live.herokuapp.com)
+## Summary 
 
-noted. is a clone of Evernote with CRUD operations for notebooks and notes. It also includes the ability to edit your username and email, if you aren't logged into the demo user. Most of these features are only available when logged into the site, you can create an account and try it yourself [here](https://noted-live.herokuapp.com/signup)!
+[noted.](https://noted-live.herokuapp.com) is a clone of [Evernote](https://evernote.com). Users can do the [following](https://github.com/ashleighctucker/noted/wiki/MVPs):
+* Sign up and Sign in
+* Create, update, and delete notebooks to orgainze their notes
+* Create, update, and delte their notes to keep track of their tasks/thoughts
+* Edit their username and email used on signup (feature disabled on demo user)
+* Search their notebooks
 
-![Preview](https://github.com/ashleighctucker/noted/blob/main/images/noted-preview.gif)
+Try it yourself [here](https://noted-live.herokuapp.com/signup)!
 
-## [Database Schema](https://github.com/ashleighctucker/noted/wiki/Database-Schema)
+## Index
 
-## [Current MVPs](https://github.com/ashleighctucker/noted/wiki/MVPs)
+* [Database Schema](https://github.com/ashleighctucker/noted/wiki/Database-Schema)
+* [Feature List](https://github.com/ashleighctucker/noted/wiki/MVPs)
 
 ##  Tech-Stack
 
@@ -23,6 +30,16 @@ noted. is a clone of Evernote with CRUD operations for notebooks and notes. It a
 * ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 * Sequelize
 * Faker 
+
+
+![Preview](https://github.com/ashleighctucker/noted/blob/main/images/noted-preview.gif)
+
+## Technical Notes
+
+I wanted to focus on creating a very accessible user flow, as I am an end-user with dyslexia and often make mistakes with word/writing based applications. One of the features that stemmed from this was the profile/user edit, I wanted to ensure that users could change their username and email in case of a potential change or typo. In this route I also ensure that the username/email to be edited to isn't taken by another user. 
+
+![edit route](https://github.com/ashleighctucker/noted/blob/main/images/edit.png)
+
 
 ## Want to contribute to noted. or try it out locally? noted. requires Postgres.
 
