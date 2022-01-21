@@ -30,6 +30,10 @@ module.exports = {
         title: 'Random Note',
         content: 'Leave your ideas here',
       },
+      {
+        title: 'Water the plants',
+        content: 'Hanging plants on monday, bottom water on tuesday, everything else wednesday'
+      },
     ];
 
     async function createNotes(usersEnd, usersStart, notes) {
