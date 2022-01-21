@@ -22,6 +22,7 @@ const SearchBar = () => {
           id="search-bar"
           name="term"
           value={term}
+          placeholder="Search Notebooks"
           onChange={(e) => setTerm(e.target.value)}
         ></input>
         <button id="search-button" type="submit">
