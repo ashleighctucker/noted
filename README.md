@@ -34,12 +34,6 @@ Try it yourself [here](https://noted-live.herokuapp.com/signup)!
 
 ![Preview](https://github.com/ashleighctucker/noted/blob/main/images/noted-preview.gif)
 
-## Technical Notes
-
-I wanted to focus on creating a very accessible features, as I am an end-user with dyslexia and often make mistakes with word/writing based applications. A feature that stemmed from this was the profile/user edit, I wanted to ensure that users could change their username and email in case of a potential change or typo. In this route I also ensure that the username/email to be edited to isn't taken by another user, all of the validations for this application are passed through the back-end routes. 
-
-
-![edit route](https://github.com/ashleighctucker/noted/blob/main/images/edit.png)
 
 
 ## Want to contribute to noted. or try it out locally? noted. requires Postgres.
