@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { addNote } from '../../store/notes';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import './NoteForm.css';
 
 const NoteForm = () => {
@@ -55,12 +57,20 @@ const NoteForm = () => {
         </div>
         <div className="note-form-content-container">
           <label htmlFor="content"></label>
-          <textarea
+          <div
             className="note-content-input"
             name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+            // value={content}
+            // onChange={(e) => setContent(e.target.value)}
+          >
+            <CKEditor
+              config={{ }}
+              className="note-content-input"
+              editor={ClassicEditor}
+              data="<p>Add your note...</p>"
+              onChange={(e, editor) => setContent(editor.getData())}
+            />
+          </div>
         </div>
         <div className="note-button-container">
           <div className="error-div">
